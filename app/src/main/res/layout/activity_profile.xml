@@ -51,7 +51,7 @@
                          />
 
                     <ImageView
-                        android:id="@+id/imageView4"
+                        android:id="@+id/man_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -71,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:fitsSystemWindows="true"
+                android:onClick="showDialog"
                 app:layout_collapseMode="parallax"
                 app:srcCompat="@drawable/image_man" />
 
@@ -317,8 +318,6 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BottomNavagation"
-        app:itemTextAppearanceActive="@dimen/design_bottom_navigation_active_text_size"
-        app:itemTextAppearanceInactive="@dimen/design_bottom_navigation_text_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
