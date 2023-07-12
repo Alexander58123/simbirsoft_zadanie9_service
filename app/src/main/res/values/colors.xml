@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background_splash_screen">#eff3f6</color>
+    <color name="black_38">#61000000</color>
+    <color name="black_87">#de000000</color>
+    <color name="leaf">#66a636</color>
+    <color name="cool_grey">#aabbbb</color>
+    <color name="status_bar">#51842B</color>
+    <color name="turtle_green">#7db354</color>
+    <color name="warm_grey">#979797</color>
+    <color name="melon">#fe7460</color>
+    <color name="transparent">#00BB1818</color>
+    <color name="border">#e1e1e1</color>
+</resources>

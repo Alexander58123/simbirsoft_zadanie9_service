@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Zadanie6</string>
+    <string name="loading">Загрузка...</string>
+    <string name="name_surname">Константинов Денис</string>
+    <string name="date_of_birth">Дата рождения</string>
+    <string name="date">01 февраля 1980</string>
+    <string name="sfera_deyatelnodti">Сфера деятельности</string>
+    <string name="sfera_more">Хирургия, травмотология</string>
+    <string name="notification">Получать  push-уведомления</string>
+    <string name="vashi_druzya">Ваши друзья</string>
+    <string name="person_dmitry">Дмитрий Валерьевич</string>
+    <string name="person_evgeniy">Евгений Александров</string>
+    <string name="person_viktor">Виктор Кузнецов</string>
+    <string name="exit_accaunt">Выйти из аккаунта</string>
+    <string name="foto">Выбрать фото</string>
+    <string name="snimok">Сделать снимок</string>
+    <string name="udalit">Удалить</string>
+</resources>
