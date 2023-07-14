@@ -69,9 +69,11 @@
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="60dp"
+                android:adjustViewBounds="true"
                 android:fitsSystemWindows="true"
                 android:onClick="showDialog"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 app:srcCompat="@drawable/image_man" />
 
