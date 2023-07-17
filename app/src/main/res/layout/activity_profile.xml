@@ -335,32 +335,17 @@
         />
 
 
-
-    <!--
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/turtle_green"
-        android:src="@drawable/round_favorite_24"
-        app:layout_anchor="@id/BottomNavagation"
-        app:layout_anchorGravity="bottom|center"
-        app:maxImageSize="30dp"
-        />
-        -->
-
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/melon"
-        app:shapeAppearanceOverlay="@style/button_circle_float"
         app:icon="@drawable/round_favorite_white"
         app:iconSize="24dp"
         app:iconTint="@color/white"
         app:layout_anchor="@id/BottomNavagation"
         app:layout_anchorGravity="bottom|center"
-       />
+        app:shapeAppearanceOverlay="@style/button_circle_float" />
 
 
 

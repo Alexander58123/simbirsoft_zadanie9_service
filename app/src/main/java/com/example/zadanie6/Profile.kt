@@ -79,4 +79,11 @@ class Profile : AppCompatActivity() {
         }
     }
 
+
+    // открыть Категории
+//    fun openActivityCategorii(view : View) {
+//        var intent = Intent(applicationContext, CategoriiPomoshi().javaClass)
+//        startActivity(intent)
+//    }
+
 }

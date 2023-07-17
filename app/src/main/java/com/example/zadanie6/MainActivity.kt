@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
 
         Handler().postDelayed({
-            val intent = Intent(this@MainActivity, Profile::class.java )
+            val intent = Intent(this@MainActivity, CategoriiPomoshi::class.java )
             startActivity(intent)
             finish()
         }, 5000)
