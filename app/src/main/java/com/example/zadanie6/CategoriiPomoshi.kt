@@ -18,6 +18,11 @@ class CategoriiPomoshi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categorii_pomoshi)
 
+        // вживляем фрагмент в активити
+        supportFragmentManager.
+        beginTransaction().
+        replace(R.id.place_holder, BlankFragment.newInstance()).commit()
+
         // наши объекты для работы
         nav = findViewById(R.id.BottomNavagation)
         buttonhead = findViewById(R.id.extendedFloatingActionButton)
@@ -36,12 +41,6 @@ class CategoriiPomoshi : AppCompatActivity() {
 
             true
         }
-
-//        buttonhead.setOnClickListener {
-//            val intent = Intent(this@CategoriiPomoshi, CategoriiPomoshi::class.java)
-//            startActivity(intent)
-//        }
-
 
 
     }
