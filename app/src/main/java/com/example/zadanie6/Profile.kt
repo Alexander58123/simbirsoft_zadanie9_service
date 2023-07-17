@@ -16,6 +16,7 @@ import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 class Profile : AppCompatActivity() {
 
@@ -23,11 +24,14 @@ class Profile : AppCompatActivity() {
     lateinit var imageProfile : ImageView
     lateinit var imageProfileOriginal : Bitmap
     lateinit var dialog : Dialog
+    lateinit var nav : BottomNavigationView
+    lateinit var buttonhead : ExtendedFloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        buttonhead = findViewById(R.id.menu_pomoch)
         imageProfile = findViewById(R.id.imageView3)
         dialog = Dialog(this)
 
@@ -46,6 +50,18 @@ class Profile : AppCompatActivity() {
                 arrayOf(Manifest.permission.CAMERA), 100
             )
         }
+
+        // выбранный пункт
+        nav = findViewById(R.id.BottomNavagation)
+        nav.menu.getItem(4).setChecked(true)
+
+
+        // открытие меню Помочь
+        buttonhead.setOnClickListener {
+            val intent = Intent(this@Profile, CategoriiPomoshi::class.java)
+            startActivity(intent)
+        }
+
     }
 
     // открытие окна диалога по картинке профиля
@@ -79,11 +95,5 @@ class Profile : AppCompatActivity() {
         }
     }
 
-
-    // открыть Категории
-//    fun openActivityCategorii(view : View) {
-//        var intent = Intent(applicationContext, CategoriiPomoshi().javaClass)
-//        startActivity(intent)
-//    }
 
 }

@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile">
@@ -9,8 +10,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
-        android:layout_height="300dp"> <!-- здесь что-то с высотой нужно менять-->
+        android:layout_height="300dp"
+        android:fitsSystemWindows="true"> <!-- здесь что-то с высотой нужно менять-->
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -31,13 +32,11 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap"
-                >
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    >
+                    android:layout_height="fill_parent">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -47,8 +46,7 @@
                         android:textAllCaps="false"
                         android:textColor="#FFF"
                         android:textSize="21sp"
-                        android:textStyle="bold"
-                         />
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/man_profile"
@@ -198,7 +196,6 @@
                 android:paddingBottom="20dp">
 
 
-
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
@@ -279,7 +276,6 @@
                 </TableRow>
 
 
-
             </LinearLayout>
 
             <View
@@ -313,9 +309,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        app:layout_anchor="@id/BottomNavagation"
         android:background="@color/border"
-        />
+        app:layout_anchor="@id/BottomNavagation" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -324,18 +319,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="@color/white"
+        app:itemIconSize="24dp"
         app:itemIconTint="@drawable/button_nav_selector"
         app:itemTextColor="@drawable/button_nav_selector"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="labeled"
-        app:itemIconSize="24dp"
-        />
+        app:menu="@menu/bottom_nav_menu" />
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/menu_pomoch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
@@ -346,7 +341,6 @@
         app:layout_anchor="@id/BottomNavagation"
         app:layout_anchorGravity="bottom|center"
         app:shapeAppearanceOverlay="@style/button_circle_float" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

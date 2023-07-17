@@ -20,7 +20,7 @@
         android:icon="@drawable/history"
         android:title="История" />
     <item
-        android:id="@+id/account_circle"
+        android:id="@+id/profile"
         android:icon="@drawable/account_circle"
         android:title="Профиль" />
 </menu>
