@@ -13,4 +13,6 @@
     <color name="melon">#fe7460</color>
     <color name="transparent">#00BB1818</color>
     <color name="border">#e1e1e1</color>
+    <color name="light_grey">#eaede8</color>
+    <color name="light_olive_green">#9ebf50</color>
 </resources>
