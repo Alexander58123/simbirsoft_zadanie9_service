@@ -62,6 +62,17 @@ class Profile : AppCompatActivity() {
             startActivity(intent)
         }
 
+        nav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.news -> {
+                    val intent = Intent(this@Profile, Novosti::class.java)
+                    startActivity(intent)
+                }
+            }
+
+            true
+        }
+
     }
 
     // открытие окна диалога по картинке профиля

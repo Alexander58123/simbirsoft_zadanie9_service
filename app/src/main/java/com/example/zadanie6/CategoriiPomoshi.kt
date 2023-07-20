@@ -39,7 +39,10 @@ class CategoriiPomoshi : AppCompatActivity() {
                     val intent = Intent(this@CategoriiPomoshi, Profile::class.java)
                     startActivity(intent)
                 }
-
+                R.id.news -> {
+                    val intent = Intent(this@CategoriiPomoshi, Novosti::class.java)
+                    startActivity(intent)
+                }
             }
 
             true
