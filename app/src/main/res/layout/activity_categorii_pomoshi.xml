@@ -7,12 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".CategoriiPomoshi">
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="@string/Category"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
+
     <FrameLayout
         android:id="@+id/place_holder"
         android:layout_width="match_parent"
-        android:layout_height="502dp"
+        android:layout_height="534dp"
         android:layout_below="@+id/appBarLayout"
-        android:layout_marginTop="34dp" />
+        android:layout_alignBottom="@id/extendedFloatingActionButton"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="43dp" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
