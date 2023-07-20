@@ -20,9 +20,11 @@ class CategoriiPomoshi : AppCompatActivity() {
         setContentView(R.layout.activity_categorii_pomoshi)
 
         // вживляем фрагмент в активити
-        supportFragmentManager.
-        beginTransaction().
-        replace(R.id.place_holder, BlankFragment.newInstance()).commit()
+//        supportFragmentManager.
+//        beginTransaction().
+//        replace(R.id.place_holder, BlankFragment.newInstance()).commit()
+          replaceFragment(BlankFragment())
+
 
         // наши объекты для работы
         nav = findViewById(R.id.BottomNavagation)
@@ -50,6 +52,14 @@ class CategoriiPomoshi : AppCompatActivity() {
         super.onResume()
         // выбранный пункт
         nav.menu.getItem(2).setChecked(true)
+    }
+
+    // фрагмент функция
+    private fun replaceFragment(blankFragment: BlankFragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.place_holder, blankFragment)
+        fragmentTransaction.commit()
     }
 
 }

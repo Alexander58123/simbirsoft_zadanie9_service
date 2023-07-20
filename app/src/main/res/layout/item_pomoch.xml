@@ -24,19 +24,21 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageList"
+                android:id="@+id/image_punkta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/pomoch1" />
 
             <TextView
-                android:id="@+id/titleList"
+                android:id="@+id/title_punkta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/light_olive_green"
-                android:textSize="15sp"
+                android:textSize="23sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
