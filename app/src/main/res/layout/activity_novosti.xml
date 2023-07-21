@@ -72,16 +72,21 @@
                 android:layout_height="match_parent">
 
                 <SearchView
+                    android:id="@+id/searchPanel"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    android:background="@color/white"
+                    android:background="@drawable/bd_white_rounded"
+                    android:clickable="true"
                     android:gravity="center"
+                    android:submitBackground="@drawable/bd_white_rounded"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:clickable="true"/>
+                    app:voiceIcon="@drawable/mic_24" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
