@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_grey_two"
     tools:context=".Novosti">
 
     <View
@@ -59,35 +60,55 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="112dp"
                 android:background="?attr/colorPrimary"
                 android:backgroundTint="#66a636"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap"/>
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <SearchView
                     android:id="@+id/searchPanel"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:background="@drawable/bd_white_rounded"
                     android:clickable="true"
                     android:gravity="center"
                     android:submitBackground="@drawable/bd_white_rounded"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:voiceIcon="@drawable/mic_24" />
+                    app:voiceIcon="@drawable/mic_24">
 
+                </SearchView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.tabs.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/macaroni_and_cheese"
+                    app:tabIndicatorHeight="3dp"
+                    app:tabInlineLabel="false"
+                    app:tabMode="fixed"
+                    app:tabTextColor="@color/white">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Tab1" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Tab2" />
+
+                </com.google.android.material.tabs.TabLayout>
+            </LinearLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
