@@ -30,7 +30,7 @@ class SearchFragmentOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_novosti_one, container, false)
+        return inflater.inflate(R.layout.fragment_search_one, container, false)
     }
 
     companion object {

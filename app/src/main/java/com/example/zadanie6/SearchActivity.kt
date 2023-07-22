@@ -3,7 +3,7 @@ package com.example.zadanie6
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.zadanie6.databinding.ActivityNovostiBinding
+import com.example.zadanie6.databinding.ActivitySearchBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.tabs.TabLayoutMediator
@@ -23,12 +23,12 @@ class SearchActivity : AppCompatActivity() {
 
     lateinit var nav : BottomNavigationView
     lateinit var buttonhead : ExtendedFloatingActionButton
-    private lateinit var binding : ActivityNovostiBinding
+    private lateinit var binding : ActivitySearchBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNovostiBinding.inflate(layoutInflater)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // viewPager синхронизирован с табами
         val adapter = VpAdapter(this, fragList)
