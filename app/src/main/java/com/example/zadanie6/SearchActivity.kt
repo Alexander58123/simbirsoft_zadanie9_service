@@ -1,25 +1,41 @@
 package com.example.zadanie6
 
-import android.annotation.SuppressLint
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.SearchView
+import com.example.zadanie6.databinding.ActivityNovostiBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.tabs.TabLayoutMediator
 
-class Novosti : AppCompatActivity() {
+class SearchActivity : AppCompatActivity() {
+
+    // лист фрагментов для ViewPager2
+    private val fragList = listOf(
+        SearchFragmentOne.newInstance(),
+        SearchFragmentTwo.newInstance()
+    )
+
+    private val fragListTitles = listOf(
+        "По мероприятиям",
+        "По НКО"
+    )
 
     lateinit var nav : BottomNavigationView
     lateinit var buttonhead : ExtendedFloatingActionButton
+    private lateinit var binding : ActivityNovostiBinding
 
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_novosti)
+        binding = ActivityNovostiBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // viewPager синхронизирован с табами
+        val adapter = VpAdapter(this, fragList)
+        binding.ViewPager.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, binding.ViewPager) {
+            tab, position -> tab.text = fragListTitles[position]
+        }.attach()
 
 
         buttonhead = findViewById(R.id.menuNews)
@@ -27,21 +43,20 @@ class Novosti : AppCompatActivity() {
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
-            val intent = Intent(this@Novosti, CategoriiPomoshi::class.java)
+            val intent = Intent(this@SearchActivity, CategoriiPomoshi::class.java)
             startActivity(intent)
         }
 
         nav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.profile -> {
-                    val intent = Intent(this@Novosti, Profile::class.java)
+                    val intent = Intent(this@SearchActivity, Profile::class.java)
                     startActivity(intent)
                 }
             }
 
             true
         }
-
 
     }
 

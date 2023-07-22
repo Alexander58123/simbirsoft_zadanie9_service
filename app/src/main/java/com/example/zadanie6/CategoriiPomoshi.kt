@@ -3,12 +3,8 @@ package com.example.zadanie6
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import com.example.zadanie6.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import org.jetbrains.annotations.NotNull
 
 class CategoriiPomoshi : AppCompatActivity() {
 
@@ -40,7 +36,7 @@ class CategoriiPomoshi : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.news -> {
-                    val intent = Intent(this@CategoriiPomoshi, Novosti::class.java)
+                    val intent = Intent(this@CategoriiPomoshi, SearchActivity::class.java)
                     startActivity(intent)
                 }
             }

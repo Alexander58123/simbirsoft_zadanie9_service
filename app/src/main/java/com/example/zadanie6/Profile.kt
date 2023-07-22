@@ -65,7 +65,7 @@ class Profile : AppCompatActivity() {
         nav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.news -> {
-                    val intent = Intent(this@Profile, Novosti::class.java)
+                    val intent = Intent(this@Profile, SearchActivity::class.java)
                     startActivity(intent)
                 }
             }
