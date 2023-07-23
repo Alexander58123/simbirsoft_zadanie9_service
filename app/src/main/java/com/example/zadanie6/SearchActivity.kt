@@ -64,6 +64,6 @@ class SearchActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // выбранный пункт
-        nav.menu.getItem(0).setChecked(true)
+        nav.menu.getItem(1).setChecked(true)
     }
 }

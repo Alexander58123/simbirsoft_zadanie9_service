@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +25,7 @@ class SearchFragmentOne : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -31,6 +34,18 @@ class SearchFragmentOne : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_one, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // выводим наш список (мероприятия, фрагмент1)
+        var listView = view?.rootView?.findViewById<ListView>(R.id.searchList1)
+        val masiveGenerate = arrayOf("Один",
+            "Два", "Три", "Четыре", "Пять")
+        val arrayAdapter: ArrayAdapter<String>
+        arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, masiveGenerate)
+        listView?.adapter = arrayAdapter
     }
 
     companion object {

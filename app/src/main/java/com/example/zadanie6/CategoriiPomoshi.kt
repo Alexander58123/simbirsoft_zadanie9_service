@@ -35,7 +35,7 @@ class CategoriiPomoshi : AppCompatActivity() {
                     val intent = Intent(this@CategoriiPomoshi, Profile::class.java)
                     startActivity(intent)
                 }
-                R.id.news -> {
+                R.id.search -> {
                     val intent = Intent(this@CategoriiPomoshi, SearchActivity::class.java)
                     startActivity(intent)
                 }
