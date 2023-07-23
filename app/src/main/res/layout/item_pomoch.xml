@@ -25,8 +25,9 @@
 
             <ImageView
                 android:id="@+id/image_punkta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="174dp"
+                android:layout_height="98dp"
+                android:layout_gravity="center"
                 app:srcCompat="@drawable/pomoch1" />
 
             <TextView

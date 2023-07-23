@@ -28,7 +28,19 @@
             android:layout_height="1dp"
             android:background="@color/border"
             app:layout_anchor="@id/BottomNavagation" />
+
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <View
+        android:id="@+id/Circle"
+        android:layout_width="74dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/circleformenu"
+        android:translationZ="2dp"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/menuNews"
@@ -46,7 +58,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/main.collapsing"
@@ -54,7 +67,8 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:toolbarId="@+id/toolbar"
+            >
 
 
             <androidx.appcompat.widget.Toolbar
@@ -66,7 +80,8 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap" />
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,8 +96,13 @@
                     android:background="@drawable/bd_white_rounded"
                     android:clickable="true"
                     android:gravity="center"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Введите название организации"
+                    android:queryBackground="@color/transparent"
                     android:submitBackground="@drawable/bd_white_rounded"
-                    app:voiceIcon="@drawable/mic_24">
+                    android:theme="@style/AppSearchView"
+                    android:voiceIcon="@drawable/mic_24"
+                    >
 
                 </SearchView>
 
@@ -117,12 +137,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="541dp"
         android:layout_below="@+id/appBarLayout"
         android:layout_alignBottom="@+id/menuNews"
+        android:layout_marginBottom="38dp"
         android:orientation="vertical">
 
         <androidx.viewpager2.widget.ViewPager2

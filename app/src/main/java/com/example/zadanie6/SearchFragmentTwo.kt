@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,14 +38,13 @@ class SearchFragmentTwo : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        nashSpisok()
+    }
 
-        // выводим наш список (мероприятия, фрагмент1)
-        var listView2 = view?.rootView?.findViewById<ListView>(R.id.searchList2)
-        val masiveGenerate2 = arrayOf("Благотворительный фонд Алины Кабаевой",
-            "Во имя жизни", "Благотворительный фонд В. Потанина", "Детские домики", "Мозаика счастья")
-        val arrayAdapter: ArrayAdapter<String>
-        arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, masiveGenerate2)
-        listView2?.adapter = arrayAdapter
+    override fun onPause() {
+        super.onPause()
+
+        nashSpisok()
     }
 
     companion object {
@@ -52,4 +52,18 @@ class SearchFragmentTwo : Fragment() {
         @JvmStatic
         fun newInstance() = SearchFragmentTwo()
     }
+
+
+    fun nashSpisok() {
+        // выводим наш список (мероприятия, фрагмент1)
+        var listView2 = view?.rootView?.findViewById<ListView>(R.id.searchList2)
+        val masiveGenerate2 = arrayOf("Благотворительный фонд Алины Кабаевой",
+            "Во имя жизни", "Благотворительный фонд В. Потанина", "Детские домики", "Мозаика счастья",
+        "Дом с маяком", "Верю в чудо", "Старость в радость", "Все дети могут", "Редкие люди")
+        val generateMassive = masiveGenerate2.take(Random.nextInt(1, 10))
+        val arrayAdapter: ArrayAdapter<String>
+        arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, generateMassive)
+        listView2?.adapter = arrayAdapter
+    }
+
 }

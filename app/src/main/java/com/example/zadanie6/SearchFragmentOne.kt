@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,12 +40,27 @@ class SearchFragmentOne : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        nashSpisok()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        // выводим наш список (мероприятия, фрагмент1)
+        nashSpisok()
+
+    }
+
+
+    fun nashSpisok() {
         // выводим наш список (мероприятия, фрагмент1)
         var listView = view?.rootView?.findViewById<ListView>(R.id.searchList1)
         val masiveGenerate = arrayOf("Один",
-            "Два", "Три", "Четыре", "Пять")
+            "Два", "Три", "Четыре", "Пять", "Шесть", "Семь", "Восемь", "Девять", "Десять",
+            "Одиннадцать", "Двенадцать", "Тринадцать", "Четырнадцать")
+        val generateMassive = masiveGenerate.take(Random.nextInt(1, 14))
         val arrayAdapter: ArrayAdapter<String>
-        arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, masiveGenerate)
+        arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, generateMassive)
         listView?.adapter = arrayAdapter
     }
 

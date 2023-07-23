@@ -306,11 +306,20 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/border"
-        app:layout_anchor="@id/BottomNavagation" />
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/Circle"
+            android:layout_width="74dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/circleformenu"
+            android:translationZ="2dp" />
+    </RelativeLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -327,6 +336,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/border"
+        app:layout_anchor="@id/BottomNavagation"
+        />
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

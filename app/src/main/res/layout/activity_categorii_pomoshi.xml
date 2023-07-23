@@ -22,11 +22,11 @@
     <FrameLayout
         android:id="@+id/place_holder"
         android:layout_width="match_parent"
-        android:layout_height="534dp"
+        android:layout_height="536dp"
         android:layout_below="@+id/appBarLayout"
         android:layout_alignBottom="@id/extendedFloatingActionButton"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="43dp" />
+        android:layout_marginBottom="41dp" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -99,6 +99,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <View
+        android:id="@+id/Circle"
+        android:layout_width="74dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/circleformenu"
+        android:translationZ="2dp"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/extendedFloatingActionButton"

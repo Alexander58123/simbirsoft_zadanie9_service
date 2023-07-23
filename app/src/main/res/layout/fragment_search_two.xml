@@ -19,11 +19,18 @@
             android:layout_marginBottom="35dp"
             android:text="@string/keywords_news" />
 
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/cool_grey" />
+
         <ListView
             android:id="@+id/searchList2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:paddingLeft="30dp" />
     </LinearLayout>
 
 </FrameLayout>
