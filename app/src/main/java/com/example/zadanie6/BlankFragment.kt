@@ -1,15 +1,12 @@
 package com.example.zadanie6
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.zadanie6.databinding.ActivityMainBinding
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,11 +19,10 @@ class BlankFragment : Fragment() {
 
     private lateinit var adapter: ItemPomochAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var itemArrayList : ArrayList<ItemPomoch>
+    private lateinit var itemArrayList: ArrayList<ItemPomoch>
 
-    lateinit var imageId : Array<Int>
-    lateinit var heading : Array<String>
-
+    lateinit var imageId: Array<Int>
+    lateinit var heading: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,10 +36,10 @@ class BlankFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
-
         return inflater.inflate(R.layout.fragment_blank, container, false)
     }
 
@@ -56,12 +52,9 @@ class BlankFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-
     }
 
-
     private fun dataInitialize() {
-
         itemArrayList = arrayListOf<ItemPomoch>()
 
         imageId = arrayOf(
@@ -69,7 +62,7 @@ class BlankFragment : Fragment() {
             R.drawable.pomoch2,
             R.drawable.pomoch3,
             R.drawable.pomoch4,
-            R.drawable.pomoch5
+            R.drawable.pomoch5,
         )
 
         heading = arrayOf(
@@ -77,18 +70,12 @@ class BlankFragment : Fragment() {
             "Взрослые",
             "Пожилые",
             "Животные",
-            "Мероприятия"
+            "Мероприятия",
         )
 
         for (i in imageId.indices) {
-
             val items = ItemPomoch(imageId[i], heading[i])
             itemArrayList.add(items)
         }
     }
-
-
-
-
-
 }

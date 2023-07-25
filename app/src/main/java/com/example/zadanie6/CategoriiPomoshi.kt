@@ -1,15 +1,15 @@
 package com.example.zadanie6
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 class CategoriiPomoshi : AppCompatActivity() {
 
-    lateinit var nav : BottomNavigationView
-    lateinit var buttonhead : ExtendedFloatingActionButton
+    lateinit var nav: BottomNavigationView
+    lateinit var buttonhead: ExtendedFloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +19,7 @@ class CategoriiPomoshi : AppCompatActivity() {
 //        supportFragmentManager.
 //        beginTransaction().
 //        replace(R.id.place_holder, BlankFragment.newInstance()).commit()
-          replaceFragment(BlankFragment())
-
+        replaceFragment(BlankFragment())
 
         // наши объекты для работы
         nav = findViewById(R.id.BottomNavagation)
@@ -43,8 +42,6 @@ class CategoriiPomoshi : AppCompatActivity() {
 
             true
         }
-
-
     }
 
     override fun onResume() {
@@ -60,5 +57,4 @@ class CategoriiPomoshi : AppCompatActivity() {
         fragmentTransaction.replace(R.id.place_holder, blankFragment)
         fragmentTransaction.commit()
     }
-
 }

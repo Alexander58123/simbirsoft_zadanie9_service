@@ -1,19 +1,18 @@
 package com.example.zadanie6
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.fragment.app.Fragment
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 
 class SearchFragmentTwo : Fragment() {
     // TODO: Rename and change types of parameters
@@ -29,8 +28,9 @@ class SearchFragmentTwo : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_two, container, false)
@@ -43,7 +43,6 @@ class SearchFragmentTwo : Fragment() {
 
     override fun onPause() {
         super.onPause()
-
         nashSpisok()
     }
 
@@ -53,17 +52,17 @@ class SearchFragmentTwo : Fragment() {
         fun newInstance() = SearchFragmentTwo()
     }
 
-
     fun nashSpisok() {
         // выводим наш список (мероприятия, фрагмент1)
         var listView2 = view?.rootView?.findViewById<ListView>(R.id.searchList2)
-        val masiveGenerate2 = arrayOf("Благотворительный фонд Алины Кабаевой",
+        val masiveGenerate2 = arrayOf(
+            "Благотворительный фонд Алины Кабаевой",
             "Во имя жизни", "Благотворительный фонд В. Потанина", "Детские домики", "Мозаика счастья",
-        "Дом с маяком", "Верю в чудо", "Старость в радость", "Все дети могут", "Редкие люди")
+            "Дом с маяком", "Верю в чудо", "Старость в радость", "Все дети могут", "Редкие люди",
+        )
         val generateMassive = masiveGenerate2.take(Random.nextInt(1, 10))
         val arrayAdapter: ArrayAdapter<String>
         arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, generateMassive)
         listView2?.adapter = arrayAdapter
     }
-
 }

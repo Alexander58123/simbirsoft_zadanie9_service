@@ -1,7 +1,6 @@
 package com.example.zadanie6
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,11 +8,11 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,11 +21,11 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 class Profile : AppCompatActivity() {
 
     // это чтобы доступ был
-    lateinit var imageProfile : ImageView
-    lateinit var imageProfileOriginal : Bitmap
-    lateinit var dialog : Dialog
-    lateinit var nav : BottomNavigationView
-    lateinit var buttonhead : ExtendedFloatingActionButton
+    lateinit var imageProfile: ImageView
+    lateinit var imageProfileOriginal: Bitmap
+    lateinit var dialog: Dialog
+    lateinit var nav: BottomNavigationView
+    lateinit var buttonhead: ExtendedFloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,22 +39,21 @@ class Profile : AppCompatActivity() {
         var drawable = imageProfile.drawable as BitmapDrawable
         imageProfileOriginal = drawable.bitmap
 
-
         if (ContextCompat.checkSelfPermission(
                 this,
-                Manifest.permission.CAMERA
+                Manifest.permission.CAMERA,
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.CAMERA), 100
+                arrayOf(Manifest.permission.CAMERA),
+                100,
             )
         }
 
         // выбранный пункт
         nav = findViewById(R.id.BottomNavagation)
         nav.menu.getItem(4).setChecked(true)
-
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -72,41 +70,40 @@ class Profile : AppCompatActivity() {
             }
             true
         }
-
     }
 
     // открытие окна диалога по картинке профиля
-    fun showDialog(view : View) {
+    fun showDialog(view: View) {
         dialog.setContentView(R.layout.dialog_profile)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         dialog.show()
     }
 
     // открытие камеры
-    fun showCamera(view : View) {
-        var intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    fun showCamera(view: View) {
+        var intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 100)
         dialog.hide()
     }
 
     // удаление фотографии (возвращаю первоначальную)
-    fun deleteFotoProfile(view : View) {
+    fun deleteFotoProfile(view: View) {
         // imageProfile.setImageDrawable(null)
         imageProfile.setImageBitmap(imageProfileOriginal)
         dialog.hide()
     }
 
     // открытие галлереи для выбора фотографии
-    fun openGalleryPhoto(view : View) {
-        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent,1)
+    fun openGalleryPhoto(view: View) {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, 1)
         dialog.hide()
     }
 
     // замена изображения в профиле
     // обработка полученного результата
 
-    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         // для камеры
@@ -119,9 +116,5 @@ class Profile : AppCompatActivity() {
         if (requestCode == 1) {
             imageProfile.setImageURI(data?.data)
         }
-
     }
-
-
-
 }

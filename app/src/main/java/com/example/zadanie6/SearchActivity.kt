@@ -1,8 +1,8 @@
 package com.example.zadanie6
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.zadanie6.databinding.ActivitySearchBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -13,19 +13,17 @@ class SearchActivity : AppCompatActivity() {
     // лист фрагментов для ViewPager2
     private val fragList = listOf(
         SearchFragmentOne.newInstance(),
-        SearchFragmentTwo.newInstance()
+        SearchFragmentTwo.newInstance(),
     )
 
     private val fragListTitles = listOf(
         "По мероприятиям",
-        "По НКО"
+        "По НКО",
     )
 
-    lateinit var nav : BottomNavigationView
-    lateinit var buttonhead : ExtendedFloatingActionButton
-    private lateinit var binding : ActivitySearchBinding
-
-
+    lateinit var nav: BottomNavigationView
+    lateinit var buttonhead: ExtendedFloatingActionButton
+    private lateinit var binding: ActivitySearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +33,9 @@ class SearchActivity : AppCompatActivity() {
         val adapter = VpAdapter(this, fragList)
         binding.ViewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, binding.ViewPager) {
-            tab, position -> tab.text = fragListTitles[position]
+                tab, position ->
+            tab.text = fragListTitles[position]
         }.attach()
-
 
         buttonhead = findViewById(R.id.menuNews)
         nav = findViewById(R.id.BottomNavagation)
@@ -58,9 +56,7 @@ class SearchActivity : AppCompatActivity() {
 
             true
         }
-
     }
-
 
     override fun onResume() {
         super.onResume()

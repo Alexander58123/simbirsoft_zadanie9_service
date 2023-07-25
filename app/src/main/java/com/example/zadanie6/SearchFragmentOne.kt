@@ -1,19 +1,18 @@
 package com.example.zadanie6
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.fragment.app.Fragment
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 
 class SearchFragmentOne : Fragment() {
     // TODO: Rename and change types of parameters
@@ -26,12 +25,12 @@ class SearchFragmentOne : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_one, container, false)
@@ -48,16 +47,16 @@ class SearchFragmentOne : Fragment() {
 
         // выводим наш список (мероприятия, фрагмент1)
         nashSpisok()
-
     }
-
 
     fun nashSpisok() {
         // выводим наш список (мероприятия, фрагмент1)
         var listView = view?.rootView?.findViewById<ListView>(R.id.searchList1)
-        val masiveGenerate = arrayOf("Один",
+        val masiveGenerate = arrayOf(
+            "Один",
             "Два", "Три", "Четыре", "Пять", "Шесть", "Семь", "Восемь", "Девять", "Десять",
-            "Одиннадцать", "Двенадцать", "Тринадцать", "Четырнадцать")
+            "Одиннадцать", "Двенадцать", "Тринадцать", "Четырнадцать",
+        )
         val generateMassive = masiveGenerate.take(Random.nextInt(1, 14))
         val arrayAdapter: ArrayAdapter<String>
         arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, generateMassive)
@@ -68,6 +67,5 @@ class SearchFragmentOne : Fragment() {
 
         @JvmStatic
         fun newInstance() = SearchFragmentOne()
-
     }
 }
