@@ -1,6 +1,7 @@
 package com.example.zadanie6
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -69,7 +70,6 @@ class Profile : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
-
             true
         }
 
@@ -96,15 +96,32 @@ class Profile : AppCompatActivity() {
         dialog.hide()
     }
 
+    // открытие галлереи для выбора фотографии
+    fun openGalleryPhoto(view : View) {
+        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent,1)
+        dialog.hide()
+    }
+
     // замена изображения в профиле
+    // обработка полученного результата
+
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        // для камеры
         if (requestCode == 100) {
             val captureImage = data?.extras?.get("data") as Bitmap
             imageProfile.setImageBitmap(captureImage)
         }
+
+        // для галереи
+        if (requestCode == 1) {
+            imageProfile.setImageURI(data?.data)
+        }
+
     }
+
 
 
 }

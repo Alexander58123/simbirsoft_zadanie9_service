@@ -25,7 +25,7 @@ class SearchActivity : AppCompatActivity() {
     lateinit var buttonhead : ExtendedFloatingActionButton
     private lateinit var binding : ActivitySearchBinding
 
-    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
