@@ -22,4 +22,8 @@
     <string name="Tab1">По мероприятиям</string>
     <string name="Tab2">По НКО</string>
     <string name="keywords_news">Ключевые слова: мастер-класс, помощь\nРезультаты поиска: 109 мероприятий</string>
+    <string name="News_tittle">Новости</string>
+    <string name="news1">Спонсоры отремонтируют \nшколу-интернат</string>
+    <string name="news1text">Дубовская школа-интернат для детей \nс ограниченными возможностями \nздоровья стала первой в области ...</string>
+    <string name="date1">Осталось 13 дней (21.09 - 20.10)</string>
 </resources>

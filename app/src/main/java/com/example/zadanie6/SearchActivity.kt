@@ -52,9 +52,13 @@ class SearchActivity : AppCompatActivity() {
                     val intent = Intent(this@SearchActivity, Profile::class.java)
                     startActivity(intent)
                 }
+                R.id.news -> {
+                    val intent = Intent(this@SearchActivity, NewsActivity::class.java)
+                    startActivity(intent)
+                }
             }
 
-            true
+            return@setOnItemSelectedListener true
         }
     }
 

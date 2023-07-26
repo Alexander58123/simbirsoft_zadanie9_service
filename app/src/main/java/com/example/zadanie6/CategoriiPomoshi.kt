@@ -38,9 +38,13 @@ class CategoriiPomoshi : AppCompatActivity() {
                     val intent = Intent(this@CategoriiPomoshi, SearchActivity::class.java)
                     startActivity(intent)
                 }
+                R.id.news -> {
+                    val intent = Intent(this@CategoriiPomoshi, NewsActivity::class.java)
+                    startActivity(intent)
+                }
             }
 
-            true
+            return@setOnItemSelectedListener true
         }
     }
 

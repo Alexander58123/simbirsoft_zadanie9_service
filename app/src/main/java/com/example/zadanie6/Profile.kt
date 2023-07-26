@@ -67,8 +67,12 @@ class Profile : AppCompatActivity() {
                     val intent = Intent(this@Profile, SearchActivity::class.java)
                     startActivity(intent)
                 }
+                R.id.news -> {
+                    val intent = Intent(this@Profile, NewsActivity::class.java)
+                    startActivity(intent)
+                }
             }
-            true
+            return@setOnItemSelectedListener true
         }
     }
 
