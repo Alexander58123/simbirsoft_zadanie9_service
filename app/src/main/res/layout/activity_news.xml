@@ -122,13 +122,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="584dp"
-        android:layout_above="@+id/circle"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-22dp"
+        android:layout_height="520dp"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="70dp"
         android:background="@color/light_grey_two">
 
         <androidx.core.widget.NestedScrollView
@@ -146,7 +144,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="8dp"
-                android:paddingTop="8dp"
                 android:paddingRight="8dp">
 
                 <LinearLayout
@@ -156,14 +153,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        app:cardPreventCornerOverlap="false">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingLeft="3dp"
-                            android:paddingTop="3dp"
                             android:paddingRight="3dp">
 
                             <FrameLayout
@@ -207,6 +204,7 @@
                                 android:id="@+id/textView17"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
                                 android:text="@string/news1text"
                                 android:textAlignment="center"
                                 android:textColor="@color/black_70"
@@ -220,6 +218,7 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
                         android:background="@color/turtle_green">
 
                         <TextView
@@ -227,8 +226,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:drawableLeft="@drawable/icon_calendar"
                             android:drawablePadding="8dp"
                             android:maxLines="1"
@@ -267,7 +266,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="259dp"
                                     android:layout_gravity="center_horizontal"
-                                    app:srcCompat="@drawable/news1" />
+                                    app:srcCompat="@drawable/news2" />
 
                                 <ImageView
                                     android:id="@+id/imageView16"
@@ -282,7 +281,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/officiana_font"
                                 android:gravity="center"
-                                android:text="@string/news1"
+                                android:text="@string/news2"
                                 android:textColor="@color/blue_grey"
                                 android:textSize="21sp"
                                 app:lineHeight="34sp" />
@@ -299,6 +298,7 @@
                                 android:id="@+id/textView18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
                                 android:text="@string/news1text"
                                 android:textAlignment="center"
                                 android:textColor="@color/black_70"
@@ -319,8 +319,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:drawableLeft="@drawable/icon_calendar"
                             android:drawablePadding="8dp"
                             android:maxLines="1"
@@ -338,6 +338,6 @@
 
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
