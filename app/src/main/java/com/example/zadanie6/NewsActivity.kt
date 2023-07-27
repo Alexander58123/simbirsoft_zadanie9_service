@@ -1,7 +1,9 @@
 package com.example.zadanie6
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -10,17 +12,26 @@ class NewsActivity : AppCompatActivity() {
 
     lateinit var nav: BottomNavigationView
     lateinit var buttonhead: ExtendedFloatingActionButton
+    lateinit var buttonFilter: ImageView
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
 
         buttonhead = findViewById(R.id.menuCategorii)
         nav = findViewById(R.id.BottomNavagation)
+        buttonFilter = findViewById(R.id.filterButton)
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
             val intent = Intent(this@NewsActivity, CategoriiPomoshi::class.java)
+            startActivity(intent)
+        }
+
+        // открытие меню Фильтр
+        buttonFilter.setOnClickListener {
+            val intent = Intent(this@NewsActivity, FiltrActivity::class.java)
             startActivity(intent)
         }
 

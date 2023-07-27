@@ -27,4 +27,13 @@
     <string name="news1text">Дубовская школа-интернат для детей \nс ограниченными возможностями \nздоровья стала первой в области ...</string>
     <string name="date1">Осталось 13 дней (21.09 - 20.10)</string>
     <string name="news2">Конкурс по вокальному \nпению в детском доме №6</string>
+    <string name="filtr">Фильтр</string>
+    <string name="filtrTitle">Как вы хотите помочь?</string>
+    <string name="nazvanie_fonda">Благотворительный фонд \"Счастливый мир\"</string>
+    <string name="organization_adress">Санкт-Петербург, Кирочная улица,\nд. 50А, каб. 208</string>
+    <string name="organization_phone">+7 (937) 037 37-73\n+7 (937) 016 16-16</string>
+    <string name="organization_mail">У вас есть вопросы? <a href="http://ya.ru">Напишите нам</a></string>
+    <string name="organization_text">Участники и болельщики смогли весело и активно провести время на «Петербургском благотворительном марафоне» и при этом финансово поучаствовать в помощи детям.\n\nПри этом финансово поучаствовать в помощи детям. При этом финансово поучаствовать в помощи детям.</string>
+    <string name="organization_link"><a href="http://#">Перейти на сайт организации</a></string>
+    <string name="chislo_102">+102</string>
 </resources>
