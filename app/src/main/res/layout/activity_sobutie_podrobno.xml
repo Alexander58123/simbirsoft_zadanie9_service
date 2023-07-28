@@ -160,204 +160,213 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/TitleSobutie"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/officiana_font"
-                    android:gravity="left"
-                    android:text="@string/news1"
-                    android:textColor="@color/blue_grey"
-                    android:textSize="21sp"
-                    app:lineHeight="34sp" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp">
 
-                <TextView
-                    android:id="@+id/timeSobutie"
+                    <TextView
+                        android:id="@+id/TitleSobutie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/officiana_font"
+                        android:gravity="left"
+                        android:text="@string/news1"
+                        android:textColor="@color/blue_grey"
+                        android:textSize="21sp"
+                        app:lineHeight="34sp" />
+
+                    <TextView
+                        android:id="@+id/timeSobutie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:drawableLeft="@drawable/icon_calendar_grey"
+                        android:drawablePadding="8dp"
+                        android:maxLines="1"
+                        android:text="@string/date1"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp"
+                        app:lineHeight="16sp" />
+
+                    <TextView
+                        android:id="@+id/nazvanieFonda"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/nazvanie_fonda"
+                        android:textColor="@color/black_60" />
+
+                    <TextView
+                        android:id="@+id/adress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="15dp"
+                        android:drawableLeft="@drawable/nav"
+                        android:drawablePadding="8dp"
+                        android:maxLines="2"
+                        android:text="@string/organization_adress"
+                        android:textColor="@color/black_70"
+                        android:textSize="14sp"
+                        app:lineHeight="20sp" />
+
+                    <TextView
+                        android:id="@+id/organizationPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="15dp"
+                        android:drawableLeft="@drawable/phone"
+                        android:drawablePadding="8dp"
+                        android:maxLines="2"
+                        android:text="@string/organization_phone"
+                        android:textColor="@color/black_70"
+                        android:textSize="14sp"
+                        app:lineHeight="20sp" />
+
+                    <TextView
+                        android:id="@+id/oranization_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/organization_link"
+                        android:textColorLink="@color/leaf" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="197dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="236dp"
+                            android:layout_height="195dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/cardimage_1" />
+
+                        <ImageView
+                            android:id="@+id/imageView11"
+                            android:layout_width="121dp"
+                            android:layout_height="86dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/cardimage_2" />
+
+                        <ImageView
+                            android:id="@+id/imageView18"
+                            android:layout_width="122dp"
+                            android:layout_height="91dp"
+                            android:layout_marginTop="12dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView11"
+                            app:srcCompat="@drawable/cardimage_3" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/organization_text"
+                        android:textColor="@color/black_70"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/organizationEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="15dp"
+                        android:drawableLeft="@drawable/mail"
+                        android:drawablePadding="8dp"
+                        android:maxLines="2"
+                        android:text="@string/organization_mail"
+                        android:textColor="@color/black_70"
+                        android:textColorLink="@color/leaf"
+                        android:textSize="14sp"
+                        app:lineHeight="20sp" />
+
+
+                </LinearLayout>
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:drawableLeft="@drawable/icon_calendar_grey"
-                    android:drawablePadding="8dp"
-                    android:maxLines="1"
-                    android:text="@string/date1"
-                    android:textColor="@color/grey"
-                    android:textSize="12sp"
-                    app:lineHeight="16sp" />
+                    android:layout_height="300dp">
 
-                <TextView
-                    android:id="@+id/nazvanieFonda"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="@string/nazvanie_fonda"
-                    android:textColor="@color/black_60" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/light_grey_two"
+                        android:gravity="left|center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
 
-                <TextView
-                    android:id="@+id/adress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="15dp"
-                    android:drawableLeft="@drawable/nav"
-                    android:drawablePadding="8dp"
-                    android:maxLines="2"
-                    android:text="@string/organization_adress"
-                    android:textColor="@color/black_70"
-                    android:textSize="14sp"
-                    app:lineHeight="20sp" />
+                        <ImageView
+                            android:id="@+id/imageView20"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:translationZ="10dp"
+                            app:srcCompat="@drawable/likes1" />
 
-                <TextView
-                    android:id="@+id/organizationPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="15dp"
-                    android:drawableLeft="@drawable/phone"
-                    android:drawablePadding="8dp"
-                    android:maxLines="2"
-                    android:text="@string/organization_phone"
-                    android:textColor="@color/black_70"
-                    android:textSize="14sp"
-                    app:lineHeight="20sp" />
+                        <ImageView
+                            android:id="@+id/imageView21"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="-8dp"
+                            android:translationZ="9dp"
+                            app:srcCompat="@drawable/likes2" />
 
-                <TextView
-                    android:id="@+id/organizationEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="15dp"
-                    android:drawableLeft="@drawable/mail"
-                    android:drawablePadding="8dp"
-                    android:maxLines="2"
-                    android:text="@string/organization_mail"
-                    android:textColor="@color/black_70"
-                    android:textColorLink="@color/leaf"
-                    android:textSize="14sp"
-                    app:lineHeight="20sp" />
+                        <ImageView
+                            android:id="@+id/imageView22"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="-8dp"
+                            android:translationZ="8dp"
+                            app:srcCompat="@drawable/likes3" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="197dp"
-                    android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:id="@+id/imageView24"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="-8dp"
+                            android:translationZ="7dp"
+                            app:srcCompat="@drawable/likes4" />
 
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="236dp"
-                        android:layout_height="195dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/cardimage_1" />
+                        <ImageView
+                            android:id="@+id/imageView25"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="-8dp"
+                            app:srcCompat="@drawable/likes5" />
 
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="121dp"
-                        android:layout_height="86dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/cardimage_2" />
-
-                    <ImageView
-                        android:id="@+id/imageView18"
-                        android:layout_width="122dp"
-                        android:layout_height="91dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView11"
-                        app:srcCompat="@drawable/cardimage_3" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/organization_text"
-                    android:textColor="@color/black_70"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/oranization_link"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/organization_link"
-                    android:textColorLink="@color/leaf" />
+                        <TextView
+                            android:id="@+id/textView32"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/chislo_102"
+                            android:textColor="@color/black_54"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </FrameLayout>
 
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/light_grey_two"
-                android:gravity="left|center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp">
-
-                <ImageView
-                    android:id="@+id/imageView20"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:translationZ="10dp"
-                    app:srcCompat="@drawable/likes1" />
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="-8dp"
-                    android:translationZ="9dp"
-                    app:srcCompat="@drawable/likes2" />
-
-                <ImageView
-                    android:id="@+id/imageView22"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="-8dp"
-                    android:translationZ="8dp"
-                    app:srcCompat="@drawable/likes3" />
-
-                <ImageView
-                    android:id="@+id/imageView24"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="-8dp"
-                    android:translationZ="7dp"
-                    app:srcCompat="@drawable/likes4" />
-
-                <ImageView
-                    android:id="@+id/imageView25"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="-8dp"
-                    app:srcCompat="@drawable/likes5" />
-
-                <TextView
-                    android:id="@+id/textView32"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="@string/chislo_102"
-                    android:textColor="@color/black_54"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </FrameLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

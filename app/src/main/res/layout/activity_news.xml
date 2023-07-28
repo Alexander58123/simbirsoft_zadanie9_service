@@ -216,6 +216,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <FrameLayout
+                        android:id="@+id/dataNovost1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
