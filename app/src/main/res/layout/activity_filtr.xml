@@ -173,12 +173,21 @@
             android:layout_height="1dp"
             android:background="@color/cool_grey" />
 
-        <ListView
-            android:id="@+id/ListKetegoriiPomoshi"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/filtrKetegoriiPomoshi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingLeft="20dp" />
+            android:paddingLeft="20dp" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="-1dp"
+            android:background="@color/cool_grey" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

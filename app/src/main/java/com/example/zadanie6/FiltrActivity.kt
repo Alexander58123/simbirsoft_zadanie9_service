@@ -3,19 +3,18 @@ package com.example.zadanie6
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import kotlin.random.Random
 
 class FiltrActivity : AppCompatActivity() {
     lateinit var nav: BottomNavigationView
     lateinit var buttonhead: ExtendedFloatingActionButton
+    lateinit var recyclerView: RecyclerView
 
-
-
+    @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filtr)
@@ -23,8 +22,12 @@ class FiltrActivity : AppCompatActivity() {
         buttonhead = findViewById(R.id.menuCategorii2)
         nav = findViewById(R.id.BottomNavagation)
 
+        recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = FilterAdapter(fillList()) // передаем в адаптер наш список с данными
+
         // выводим наш  в фильтре
-        nashSpisok()
+//        nashSpisok()
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -48,17 +51,25 @@ class FiltrActivity : AppCompatActivity() {
         }
     }
 
-
-
-    fun nashSpisok() {
-        // выводим наш список (мероприятия, фрагмент1)
-        var listView = findViewById<ListView>(R.id.ListKetegoriiPomoshi)
-        val masiveKategoriy = arrayOf(
+    fun fillList(): List<String> {
+        val data = mutableListOf<String>(
             "Деньгами",
-            "Вещами", "Проф. помощью", "Волонтерством"
+            "Вещами",
+            "Проф. помощью",
+            "Волонтерством",
         )
-        val arrayAdapter: ArrayAdapter<String>
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, masiveKategoriy)
-        listView?.adapter = arrayAdapter
+        return data
     }
+
+//    fun nashSpisok() {
+//        // выводим наш список (мероприятия, фрагмент1)
+//        var listView = findViewById<ListView>(R.id.filtrKetegoriiPomoshi)
+//        val masiveKategoriy = arrayOf(
+//            "Деньгами",
+//            "Вещами", "Проф. помощью", "Волонтерством"
+//        )
+//        val arrayAdapter: ArrayAdapter<String>
+//        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, masiveKategoriy)
+//        listView?.adapter = arrayAdapter
+//    }
 }
