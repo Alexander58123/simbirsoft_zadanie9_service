@@ -3,6 +3,7 @@ package com.example.zadanie6
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ class FiltrActivity : AppCompatActivity() {
     lateinit var nav: BottomNavigationView
     lateinit var buttonhead: ExtendedFloatingActionButton
     lateinit var recyclerView: RecyclerView
+    lateinit var adapter: FilterAdapter
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +26,8 @@ class FiltrActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = FilterAdapter(fillList()) // передаем в адаптер наш список с данными
-
-        // выводим наш  в фильтре
-//        nashSpisok()
+        adapter = FilterAdapter(fillList())
+        recyclerView.adapter = adapter // передаем в адаптер наш список с данными
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -49,27 +49,69 @@ class FiltrActivity : AppCompatActivity() {
 
             return@setOnItemSelectedListener true
         }
+
+        // слушатель для RecyclerView
+        adapter.setOnClickListener(object :
+            FilterAdapter.OnClickListener {
+            override fun onClick(position: Int, model: FilterData) {
+
+                // в зависимости от позиции переключаем Switch
+                when (position) {
+                    0 -> {
+                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(0)
+                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        if (switch?.isChecked == true) {
+                            switch?.text = "откл."
+                        } else {
+                            switch?.text = "вкл."
+                        }
+
+                        switch?.isChecked = switch?.isChecked != true
+                    }
+                    1 -> {
+                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(1)
+                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        if (switch?.isChecked == true) {
+                            switch?.text = "откл."
+                        } else {
+                            switch?.text = "вкл."
+                        }
+
+                        switch?.isChecked = switch?.isChecked != true
+                    }
+                    2 -> {
+                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(2)
+                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        if (switch?.isChecked == true) {
+                            switch?.text = "откл."
+                        } else {
+                            switch?.text = "вкл."
+                        }
+
+                        switch?.isChecked = switch?.isChecked != true
+                    }
+                    3 -> {
+                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(3)
+                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        if (switch?.isChecked == true) {
+                            switch?.text = "откл."
+                        } else {
+                            switch?.text = "вкл."
+                        }
+
+                        switch?.isChecked = switch?.isChecked != true
+                    }
+                }
+            }
+        })
     }
 
-    fun fillList(): List<String> {
-        val data = mutableListOf<String>(
-            "Деньгами",
-            "Вещами",
-            "Проф. помощью",
-            "Волонтерством",
-        )
+    fun fillList(): List<FilterData> {
+        val data = mutableListOf<FilterData>()
+        data.add(FilterData("Деньгами", Switch(this)))
+        data.add(FilterData("Вещами", Switch(this)))
+        data.add(FilterData("Проф. помощью", Switch(this)))
+        data.add(FilterData("Волонтерством", Switch(this)))
         return data
     }
-
-//    fun nashSpisok() {
-//        // выводим наш список (мероприятия, фрагмент1)
-//        var listView = findViewById<ListView>(R.id.filtrKetegoriiPomoshi)
-//        val masiveKategoriy = arrayOf(
-//            "Деньгами",
-//            "Вещами", "Проф. помощью", "Волонтерством"
-//        )
-//        val arrayAdapter: ArrayAdapter<String>
-//        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, masiveKategoriy)
-//        listView?.adapter = arrayAdapter
-//    }
 }
