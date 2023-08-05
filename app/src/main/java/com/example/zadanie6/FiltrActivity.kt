@@ -1,6 +1,5 @@
 package com.example.zadanie6
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Switch
@@ -9,6 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import org.json.JSONArray
+import java.io.InputStream
+import java.lang.Exception
 
 class FiltrActivity : AppCompatActivity() {
     lateinit var nav: BottomNavigationView
@@ -16,13 +18,17 @@ class FiltrActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: FilterAdapter
 
-    @SuppressLint("MissingInflatedId", "ResourceType")
+    lateinit var spisokKategorii: List<Kategorii>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filtr)
 
         buttonhead = findViewById(R.id.menuCategorii2)
         nav = findViewById(R.id.BottomNavagation)
+
+        // наш список категорий, который спарсили из categorii.json
+        spisokKategorii = read_json()
 
         recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -54,7 +60,6 @@ class FiltrActivity : AppCompatActivity() {
         adapter.setOnClickListener(object :
             FilterAdapter.OnClickListener {
             override fun onClick(position: Int, model: FilterData) {
-
                 // в зависимости от позиции переключаем Switch
                 when (position) {
                     0 -> {
@@ -104,14 +109,47 @@ class FiltrActivity : AppCompatActivity() {
                 }
             }
         })
+
     }
 
+    // чтение файла json (категории)
+    fun read_json(): List<Kategorii> {
+        var json: String? = null
+        var jsonList = mutableListOf<Kategorii>()
+
+        try {
+            val inputStream: InputStream = assets.open("categorii.json")
+            json = inputStream.bufferedReader().use { it.readText() }
+
+            var jsonArrayKategorii = JSONArray(json)
+
+            for (i in 0..jsonArrayKategorii.length() - 1) {
+                var jsonObj = jsonArrayKategorii.getJSONObject(i)
+                jsonList?.add(Kategorii(jsonObj.getString("tip")))
+            }
+
+            //      проверка вывода списка
+//            var adapterList: ArrayAdapter<Kategorii> = ArrayAdapter(this, android.R.layout.simple_list_item_1, jsonList)
+//            var listTest = findViewById<ListView>(R.id.test)
+//            listTest.adapter = adapterList
+        } catch (e: Exception) {
+            e.stackTrace
+        }
+
+        return jsonList
+    }
+
+    // список для добавления в фильтр
     fun fillList(): List<FilterData> {
         val data = mutableListOf<FilterData>()
-        data.add(FilterData("Деньгами", Switch(this)))
-        data.add(FilterData("Вещами", Switch(this)))
-        data.add(FilterData("Проф. помощью", Switch(this)))
-        data.add(FilterData("Волонтерством", Switch(this)))
+//        data.add(FilterData(spisokKategorii.get(0).nazvanie, Switch(this)))
+//        data.add(FilterData(spisokKategorii.get(1).nazvanie, Switch(this)))
+//        data.add(FilterData(spisokKategorii.get(2).nazvanie, Switch(this)))
+//        data.add(FilterData(spisokKategorii.get(3).nazvanie, Switch(this)))
+
+        for (i in 0 until spisokKategorii.size) {
+            data.add(FilterData(spisokKategorii.get(i).nazvanie, Switch(this)))
+        }
         return data
     }
 }

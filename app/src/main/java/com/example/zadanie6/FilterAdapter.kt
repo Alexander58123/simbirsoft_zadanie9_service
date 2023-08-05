@@ -31,13 +31,14 @@ class FilterAdapter(private val spisokFiltra: List<FilterData>) :
     // связываем текстовые метки с данными
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nazvPunkta.text = spisokFiltra.get(position).nazvanie
-        holder.switchFilter = spisokFiltra.get(position).switchFilter
+        holder.switchFilter = spisokFiltra.get(position).switchFilter  // проверить view
 
         // Finally add an onclickListener to the item.
         val item = spisokFiltra[position]
         holder.itemView.setOnClickListener {
             if (onClickListener != null) {
                 onClickListener!!.onClick(position, item)
+                holder.switchFilter.isChecked = !holder.switchFilter.isChecked // обратный флаг
             }
         }
     }
