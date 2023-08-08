@@ -66,7 +66,7 @@
                                 app:srcCompat="@drawable/check_24" />
 
                             <ImageView
-                                android:id="@+id/back"
+                                android:id="@+id/arrovBackID"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_alignParentLeft="true"
@@ -189,10 +189,6 @@
             android:layout_marginTop="-1dp"
             android:background="@color/cool_grey" />
 
-        <ListView
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="500dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

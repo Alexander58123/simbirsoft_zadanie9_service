@@ -1,5 +1,6 @@
 package com.example.zadanie6
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,11 @@ class FilterAdapter(private val spisokFiltra: List<FilterData>) :
     private var onClickListener: OnClickListener? = null
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nazvPunkta: TextView = itemView.findViewById(R.id.punktFilterRecyclerView)
-        var switchFilter: Switch = itemView.findViewById(R.id.switch2)
+        val switchFilter: Switch = itemView.findViewById(R.id.switch2)
     }
 
-    // сюда макет отдельного элемента и возвращаем наш ViewHolder
+    // сюда макет отдельного элемента
+    // и возвращаем наш ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.filtr_atem_recyclerview, parent, false)
@@ -31,14 +33,14 @@ class FilterAdapter(private val spisokFiltra: List<FilterData>) :
     // связываем текстовые метки с данными
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nazvPunkta.text = spisokFiltra.get(position).nazvanie
-        holder.switchFilter = spisokFiltra.get(position).switchFilter  // проверить view
+        // spisokFiltra.get(position).switchFilter = holder.switchFilter
+        spisokFiltra[position].switchFilter = holder.switchFilter
 
-        // Finally add an onclickListener to the item.
+        //  Finally add an onclickListener to the item.
         val item = spisokFiltra[position]
         holder.itemView.setOnClickListener {
             if (onClickListener != null) {
                 onClickListener!!.onClick(position, item)
-                holder.switchFilter.isChecked = !holder.switchFilter.isChecked // обратный флаг
             }
         }
     }

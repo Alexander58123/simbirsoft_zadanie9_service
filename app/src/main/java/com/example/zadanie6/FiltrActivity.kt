@@ -1,7 +1,9 @@
 package com.example.zadanie6
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,27 +15,38 @@ import java.io.InputStream
 import java.lang.Exception
 
 class FiltrActivity : AppCompatActivity() {
+
     lateinit var nav: BottomNavigationView
     lateinit var buttonhead: ExtendedFloatingActionButton
+    lateinit var arrowBack: ImageView
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: FilterAdapter
 
+    lateinit var spisokForAdapter: List<FilterData>
     lateinit var spisokKategorii: List<Kategorii>
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filtr)
 
         buttonhead = findViewById(R.id.menuCategorii2)
         nav = findViewById(R.id.BottomNavagation)
+        arrowBack = findViewById(R.id.arrovBackID)
 
         // наш список категорий, который спарсили из categorii.json
         spisokKategorii = read_json()
 
         recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = FilterAdapter(fillList())
+        spisokForAdapter = fillList()
+
+        adapter = FilterAdapter(spisokForAdapter)
         recyclerView.adapter = adapter // передаем в адаптер наш список с данными
+
+        val switch4: Switch = spisokForAdapter.get(0).switchFilter
+        switch4.isChecked = false
+        adapter.notifyDataSetChanged()
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -41,6 +54,13 @@ class FiltrActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // кнопка назад
+        arrowBack.setOnClickListener {
+            val intent = Intent(this@FiltrActivity, NewsActivity::class.java)
+            startActivity(intent)
+        }
+
+        // навигация в BottomMenu
         nav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.profile -> {
@@ -63,53 +83,50 @@ class FiltrActivity : AppCompatActivity() {
                 // в зависимости от позиции переключаем Switch
                 when (position) {
                     0 -> {
-                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(0)
-                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        // val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(0)
+                        // val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        val switch = model.switchFilter
                         if (switch?.isChecked == true) {
                             switch?.text = "откл."
+                            switch?.isChecked = false
                         } else {
                             switch?.text = "вкл."
+                            switch?.isChecked = true
                         }
-
-                        switch?.isChecked = switch?.isChecked != true
                     }
                     1 -> {
-                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(1)
-                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        val switch = spisokForAdapter.get(1).switchFilter
                         if (switch?.isChecked == true) {
                             switch?.text = "откл."
+                            switch?.isChecked = false
                         } else {
                             switch?.text = "вкл."
+                            switch?.isChecked = true
                         }
-
-                        switch?.isChecked = switch?.isChecked != true
                     }
                     2 -> {
-                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(2)
-                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        val switch = spisokForAdapter.get(2).switchFilter
                         if (switch?.isChecked == true) {
                             switch?.text = "откл."
+                            switch?.isChecked = false
                         } else {
                             switch?.text = "вкл."
+                            switch?.isChecked = true
                         }
-
-                        switch?.isChecked = switch?.isChecked != true
                     }
                     3 -> {
-                        val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(3)
-                        val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
+                        val switch = spisokForAdapter.get(3).switchFilter
                         if (switch?.isChecked == true) {
                             switch?.text = "откл."
+                            switch?.isChecked = false
                         } else {
                             switch?.text = "вкл."
+                            switch?.isChecked = true
                         }
-
-                        switch?.isChecked = switch?.isChecked != true
                     }
                 }
             }
         })
-
     }
 
     // чтение файла json (категории)
@@ -133,6 +150,7 @@ class FiltrActivity : AppCompatActivity() {
 //            var listTest = findViewById<ListView>(R.id.test)
 //            listTest.adapter = adapterList
         } catch (e: Exception) {
+            // здесь дополнительная обработка при отсутствии файла
             e.stackTrace
         }
 
@@ -141,15 +159,35 @@ class FiltrActivity : AppCompatActivity() {
 
     // список для добавления в фильтр
     fun fillList(): List<FilterData> {
-        val data = mutableListOf<FilterData>()
-//        data.add(FilterData(spisokKategorii.get(0).nazvanie, Switch(this)))
-//        data.add(FilterData(spisokKategorii.get(1).nazvanie, Switch(this)))
-//        data.add(FilterData(spisokKategorii.get(2).nazvanie, Switch(this)))
-//        data.add(FilterData(spisokKategorii.get(3).nazvanie, Switch(this)))
-
+        var data = mutableListOf<FilterData>()
+        var switch = Switch(this)
+        switch.isChecked = true
         for (i in 0 until spisokKategorii.size) {
-            data.add(FilterData(spisokKategorii.get(i).nazvanie, Switch(this)))
+            data.add(FilterData(spisokKategorii.get(i).nazvanie, switch))
         }
         return data
     }
+
+    // метод, который сохраняет состояние FiltrActivity
+    // метод вызывается перед тем как уничтожить активность
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        val massivBoolean: BooleanArray = booleanArrayOf(
+            spisokForAdapter.get(0).switchFilter.isChecked,
+            spisokForAdapter.get(1).switchFilter.isChecked,
+            spisokForAdapter.get(2).switchFilter.isChecked,
+            spisokForAdapter.get(3).switchFilter.isChecked,
+        )
+        savedInstanceState.putBooleanArray("sostoayniyaSwitch", massivBoolean)
+    }
+
+//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+//        super.onRestoreInstanceState(savedInstanceState)
+//        // восстанавливаем состояние Switch
+//
+//        spisokForAdapter.get(0).switchFilter.isChecked =
+//            savedInstanceState?.getBooleanArray("sostoayniyaSwitch")?.get(0) ?: false
+//        spisokForAdapter.get(1).switchFilter.isChecked =
+//            savedInstanceState?.getBooleanArray("sostoayniyaSwitch")?.get(1) ?: false
+//    }
 }
