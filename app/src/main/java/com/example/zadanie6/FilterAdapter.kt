@@ -1,6 +1,5 @@
 package com.example.zadanie6
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FilterAdapter(private val spisokFiltra: List<FilterData>) :
+class FilterAdapter(var spisokFiltra: List<FilterData>) :
     RecyclerView.Adapter<FilterAdapter.MyViewHolder>() {
 
     private var onClickListener: OnClickListener? = null
@@ -33,8 +32,9 @@ class FilterAdapter(private val spisokFiltra: List<FilterData>) :
     // связываем текстовые метки с данными
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nazvPunkta.text = spisokFiltra.get(position).nazvanie
-        // spisokFiltra.get(position).switchFilter = holder.switchFilter
+        holder.switchFilter.isChecked = spisokFiltra.get(position).switchFilter.isChecked // забираем статус из нашего списка
         spisokFiltra[position].switchFilter = holder.switchFilter
+
 
         //  Finally add an onclickListener to the item.
         val item = spisokFiltra[position]

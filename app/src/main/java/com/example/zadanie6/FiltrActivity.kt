@@ -24,6 +24,7 @@ class FiltrActivity : AppCompatActivity() {
 
     lateinit var spisokForAdapter: List<FilterData>
     lateinit var spisokKategorii: List<Kategorii>
+    lateinit var massiveBooleanArray: BooleanArray
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,20 +40,38 @@ class FiltrActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        spisokForAdapter = fillList()
+
+        var switch: Switch = Switch(this)
+        var switch1: Switch = Switch(this)
+        var switch2: Switch = Switch(this)
+        var switch3: Switch = Switch(this)
+        if (savedInstanceState != null) {
+            massiveBooleanArray = savedInstanceState?.getBooleanArray("sostoayniyaSwitch")!!
+            switch.isChecked = massiveBooleanArray.get(0)
+            switch1.isChecked = massiveBooleanArray.get(1)
+            switch2.isChecked = massiveBooleanArray.get(2)
+            switch3.isChecked = massiveBooleanArray.get(3)
+        } else {
+            switch.isChecked = true
+            switch1.isChecked = true
+            switch2.isChecked = true
+            switch3.isChecked = true
+        }
+
+        spisokForAdapter = fillList(switch, switch1, switch2, switch3)
 
         adapter = FilterAdapter(spisokForAdapter)
         recyclerView.adapter = adapter // передаем в адаптер наш список с данными
-
-        val switch4: Switch = spisokForAdapter.get(0).switchFilter
-        switch4.isChecked = false
-        adapter.notifyDataSetChanged()
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
             val intent = Intent(this@FiltrActivity, CategoriiPomoshi::class.java)
             startActivity(intent)
         }
+
+//        val viewHolder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(1)
+//        val myViewHolder: FilterAdapter.MyViewHolder = viewHolder as FilterAdapter.MyViewHolder
+//        myViewHolder.switchFilter.isChecked = false
 
         // кнопка назад
         arrowBack.setOnClickListener {
@@ -157,14 +176,13 @@ class FiltrActivity : AppCompatActivity() {
         return jsonList
     }
 
-    // список для добавления в фильтр
-    fun fillList(): List<FilterData> {
+    // список для адаптера RecyclerView
+    fun fillList(switch: Switch, switch1: Switch, switch2: Switch, switch3: Switch): List<FilterData> {
         var data = mutableListOf<FilterData>()
-        var switch = Switch(this)
-        switch.isChecked = true
-        for (i in 0 until spisokKategorii.size) {
-            data.add(FilterData(spisokKategorii.get(i).nazvanie, switch))
-        }
+        data.add(FilterData(spisokKategorii.get(0).nazvanie, switch))
+        data.add(FilterData(spisokKategorii.get(1).nazvanie, switch1))
+        data.add(FilterData(spisokKategorii.get(2).nazvanie, switch2))
+        data.add(FilterData(spisokKategorii.get(3).nazvanie, switch3))
         return data
     }
 
@@ -180,14 +198,4 @@ class FiltrActivity : AppCompatActivity() {
         )
         savedInstanceState.putBooleanArray("sostoayniyaSwitch", massivBoolean)
     }
-
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        // восстанавливаем состояние Switch
-//
-//        spisokForAdapter.get(0).switchFilter.isChecked =
-//            savedInstanceState?.getBooleanArray("sostoayniyaSwitch")?.get(0) ?: false
-//        spisokForAdapter.get(1).switchFilter.isChecked =
-//            savedInstanceState?.getBooleanArray("sostoayniyaSwitch")?.get(1) ?: false
-//    }
 }
