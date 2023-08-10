@@ -30,7 +30,6 @@
             android:height="32dp"
             android:checked="false"
             android:foregroundGravity="right"
-            android:text="откл."
             tools:checked="false" />
 
     </FrameLayout>

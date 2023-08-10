@@ -2,6 +2,7 @@ package com.example.zadanie6
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Switch
@@ -24,7 +25,15 @@ class FiltrActivity : AppCompatActivity() {
 
     lateinit var spisokForAdapter: List<FilterData>
     lateinit var spisokKategorii: List<Kategorii>
-    lateinit var massiveBooleanArray: BooleanArray
+
+    lateinit var switch: Switch
+    lateinit var switch1: Switch
+    lateinit var switch2: Switch
+    lateinit var switch3: Switch
+    lateinit var pref1: SharedPreferences
+    lateinit var pref2: SharedPreferences
+    lateinit var pref3: SharedPreferences
+    lateinit var pref4: SharedPreferences
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,22 +50,8 @@ class FiltrActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        var switch: Switch = Switch(this)
-        var switch1: Switch = Switch(this)
-        var switch2: Switch = Switch(this)
-        var switch3: Switch = Switch(this)
-        if (savedInstanceState != null) {
-            massiveBooleanArray = savedInstanceState?.getBooleanArray("sostoayniyaSwitch")!!
-            switch.isChecked = massiveBooleanArray.get(0)
-            switch1.isChecked = massiveBooleanArray.get(1)
-            switch2.isChecked = massiveBooleanArray.get(2)
-            switch3.isChecked = massiveBooleanArray.get(3)
-        } else {
-            switch.isChecked = true
-            switch1.isChecked = true
-            switch2.isChecked = true
-            switch3.isChecked = true
-        }
+        
+        initSwitchandSharePreference()
 
         spisokForAdapter = fillList(switch, switch1, switch2, switch3)
 
@@ -68,10 +63,6 @@ class FiltrActivity : AppCompatActivity() {
             val intent = Intent(this@FiltrActivity, CategoriiPomoshi::class.java)
             startActivity(intent)
         }
-
-//        val viewHolder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(1)
-//        val myViewHolder: FilterAdapter.MyViewHolder = viewHolder as FilterAdapter.MyViewHolder
-//        myViewHolder.switchFilter.isChecked = false
 
         // кнопка назад
         arrowBack.setOnClickListener {
@@ -106,40 +97,32 @@ class FiltrActivity : AppCompatActivity() {
                         // val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
                         val switch = model.switchFilter
                         if (switch?.isChecked == true) {
-                            switch?.text = "откл."
                             switch?.isChecked = false
                         } else {
-                            switch?.text = "вкл."
                             switch?.isChecked = true
                         }
                     }
                     1 -> {
                         val switch = spisokForAdapter.get(1).switchFilter
                         if (switch?.isChecked == true) {
-                            switch?.text = "откл."
                             switch?.isChecked = false
                         } else {
-                            switch?.text = "вкл."
                             switch?.isChecked = true
                         }
                     }
                     2 -> {
                         val switch = spisokForAdapter.get(2).switchFilter
                         if (switch?.isChecked == true) {
-                            switch?.text = "откл."
                             switch?.isChecked = false
                         } else {
-                            switch?.text = "вкл."
                             switch?.isChecked = true
                         }
                     }
                     3 -> {
                         val switch = spisokForAdapter.get(3).switchFilter
                         if (switch?.isChecked == true) {
-                            switch?.text = "откл."
                             switch?.isChecked = false
                         } else {
-                            switch?.text = "вкл."
                             switch?.isChecked = true
                         }
                     }
@@ -148,7 +131,57 @@ class FiltrActivity : AppCompatActivity() {
         })
     }
 
-    // чтение файла json (категории)
+
+
+    fun initSwitchandSharePreference() {
+        pref1 = getSharedPreferences("hranilishe1", MODE_PRIVATE)
+        pref2 = getSharedPreferences("hranilishe2", MODE_PRIVATE)
+        pref3 = getSharedPreferences("hranilishe3", MODE_PRIVATE)
+        pref4 = getSharedPreferences("hranilishe4", MODE_PRIVATE)
+        switch = Switch(this)
+        switch1 = Switch(this)
+        switch2 = Switch(this)
+        switch3 = Switch(this)
+
+        if (pref1 != null && pref2 != null && pref3 != null && pref4 != null) {
+            switch.isChecked = pref1.getBoolean("value1", true)
+            switch1.isChecked = pref2.getBoolean("value2", true)
+            switch2.isChecked = pref3.getBoolean("value3", true)
+            switch3.isChecked = pref4.getBoolean("value4", true)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        saveStageActivity()
+    }
+
+    // перезапуск активити, возвращаем состояние
+    override fun onRestart() {
+        super.onRestart()
+        switch.isChecked = pref1.getBoolean("value1", true)
+        switch1.isChecked = pref2.getBoolean("value2", true)
+        switch2.isChecked = pref3.getBoolean("value3", true)
+        switch3.isChecked = pref4.getBoolean("value4", true)
+    }
+
+    // забирает последнее состояние Switch, перед onStop
+    fun saveStageActivity() {
+        val edit1: SharedPreferences.Editor = pref1.edit()
+        val edit2: SharedPreferences.Editor = pref2.edit()
+        val edit3: SharedPreferences.Editor = pref3.edit()
+        val edit4: SharedPreferences.Editor = pref4.edit()
+        edit1.putBoolean("value1", spisokForAdapter.get(0).switchFilter.isChecked)
+        edit2.putBoolean("value2", spisokForAdapter.get(1).switchFilter.isChecked)
+        edit3.putBoolean("value3", spisokForAdapter.get(2).switchFilter.isChecked)
+        edit4.putBoolean("value4", spisokForAdapter.get(3).switchFilter.isChecked)
+        edit1.apply()
+        edit2.apply()
+        edit3.apply()
+        edit4.apply()
+    }
+
+    // чтение файла json (категории в фильтре)
     fun read_json(): List<Kategorii> {
         var json: String? = null
         var jsonList = mutableListOf<Kategorii>()
@@ -184,18 +217,5 @@ class FiltrActivity : AppCompatActivity() {
         data.add(FilterData(spisokKategorii.get(2).nazvanie, switch2))
         data.add(FilterData(spisokKategorii.get(3).nazvanie, switch3))
         return data
-    }
-
-    // метод, который сохраняет состояние FiltrActivity
-    // метод вызывается перед тем как уничтожить активность
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        val massivBoolean: BooleanArray = booleanArrayOf(
-            spisokForAdapter.get(0).switchFilter.isChecked,
-            spisokForAdapter.get(1).switchFilter.isChecked,
-            spisokForAdapter.get(2).switchFilter.isChecked,
-            spisokForAdapter.get(3).switchFilter.isChecked,
-        )
-        savedInstanceState.putBooleanArray("sostoayniyaSwitch", massivBoolean)
     }
 }
