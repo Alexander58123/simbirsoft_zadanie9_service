@@ -14,6 +14,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, CategoriiPomoshi::class.java)
             startActivity(intent)
             finish()
-        }, 1500)
+        }, 1000)
     }
 }

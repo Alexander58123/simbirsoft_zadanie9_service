@@ -20,6 +20,7 @@ class FiltrActivity : AppCompatActivity() {
     lateinit var nav: BottomNavigationView
     lateinit var buttonhead: ExtendedFloatingActionButton
     lateinit var arrowBack: ImageView
+    lateinit var filterCheckButton: ImageView
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: FilterAdapter
 
@@ -43,6 +44,7 @@ class FiltrActivity : AppCompatActivity() {
         buttonhead = findViewById(R.id.menuCategorii2)
         nav = findViewById(R.id.BottomNavagation)
         arrowBack = findViewById(R.id.arrovBackID)
+        filterCheckButton = findViewById(R.id.filterButton)
 
         // наш список категорий, который спарсили из categorii.json
         spisokKategorii = read_json()
@@ -50,8 +52,8 @@ class FiltrActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.filtrKetegoriiPomoshi)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        
-        initSwitchandSharePreference()
+        // инициализация Switch и SharedPreferences
+        initSwitchandSharedPreferences()
 
         spisokForAdapter = fillList(switch, switch1, switch2, switch3)
 
@@ -69,6 +71,13 @@ class FiltrActivity : AppCompatActivity() {
             val intent = Intent(this@FiltrActivity, NewsActivity::class.java)
             startActivity(intent)
         }
+
+        // кнопка подтверждения
+        filterCheckButton.setOnClickListener {
+            val intent = Intent(this@FiltrActivity, NewsActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // навигация в BottomMenu
         nav.setOnItemSelectedListener {
@@ -133,7 +142,7 @@ class FiltrActivity : AppCompatActivity() {
 
 
 
-    fun initSwitchandSharePreference() {
+    fun initSwitchandSharedPreferences() {
         pref1 = getSharedPreferences("hranilishe1", MODE_PRIVATE)
         pref2 = getSharedPreferences("hranilishe2", MODE_PRIVATE)
         pref3 = getSharedPreferences("hranilishe3", MODE_PRIVATE)
@@ -153,17 +162,19 @@ class FiltrActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        saveStageActivity()
-    }
-
-    // перезапуск активити, возвращаем состояние
-    override fun onRestart() {
-        super.onRestart()
+        saveStageActivity() // сохранили состояние
+        // изменили состояние
         switch.isChecked = pref1.getBoolean("value1", true)
         switch1.isChecked = pref2.getBoolean("value2", true)
         switch2.isChecked = pref3.getBoolean("value3", true)
         switch3.isChecked = pref4.getBoolean("value4", true)
     }
+
+    // перезапуск активити, возвращаем состояние
+//    override fun onRestart() {
+//        super.onRestart()
+//
+//    }
 
     // забирает последнее состояние Switch, перед onStop
     fun saveStageActivity() {
