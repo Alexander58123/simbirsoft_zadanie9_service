@@ -8,13 +8,14 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 class NewsActivity : AppCompatActivity() {
 
     lateinit var nav: BottomNavigationView
-    lateinit var novost1: FrameLayout
     lateinit var buttonhead: ExtendedFloatingActionButton
     lateinit var buttonFilter: ImageView
 
@@ -27,6 +28,10 @@ class NewsActivity : AppCompatActivity() {
     lateinit var boolean3: TextView
     lateinit var boolean4: TextView
 
+    lateinit var recyclerView: RecyclerView
+    lateinit var adapter: NewsAdapter
+    lateinit var spisokForAdapter: List<NewsData>
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,22 +40,28 @@ class NewsActivity : AppCompatActivity() {
         buttonhead = findViewById(R.id.menuCategorii)
         nav = findViewById(R.id.BottomNavagation)
         buttonFilter = findViewById(R.id.filterButton)
-        novost1 = findViewById(R.id.dataNovost1)
 
-        boolean1 = findViewById(R.id.boolean1)
-        boolean2 = findViewById(R.id.boolean2)
-        boolean3 = findViewById(R.id.boolean3)
-        boolean4 = findViewById(R.id.boolean4)
+//        boolean1 = findViewById(R.id.boolean1)
+//        boolean2 = findViewById(R.id.boolean2)
+//        boolean3 = findViewById(R.id.boolean3)
+//        boolean4 = findViewById(R.id.boolean4)
 
+        recyclerView = findViewById(R.id.RecyclerNovosti)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE)
-        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE)
-        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE)
-        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE)
-        boolean1.text = sharedPreferences1.getBoolean("value1", true).toString()
-        boolean2.text = sharedPreferences2.getBoolean("value2", true).toString()
-        boolean3.text = sharedPreferences3.getBoolean("value3", true).toString()
-        boolean4.text = sharedPreferences4.getBoolean("value4", true).toString()
+        spisokForAdapter = initSpisokNewsData()
+
+        adapter = NewsAdapter(initSpisokNewsData())
+        recyclerView.adapter = adapter  // передаем в адаптер наш список с данными
+
+//        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE)
+//        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE)
+//        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE)
+//        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE)
+//        boolean1.text = sharedPreferences1.getBoolean("value1", true).toString()
+//        boolean2.text = sharedPreferences2.getBoolean("value2", true).toString()
+//        boolean3.text = sharedPreferences3.getBoolean("value3", true).toString()
+//        boolean4.text = sharedPreferences4.getBoolean("value4", true).toString()
 
 
 
@@ -67,10 +78,10 @@ class NewsActivity : AppCompatActivity() {
         }
 
         // открытие Новость1
-        novost1.setOnClickListener {
-            val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
-            startActivity(intent)
-        }
+//        novost1.setOnClickListener {
+//            val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
+//            startActivity(intent)
+//        }
 
         // менюшка BootomMenu
         nav.setOnItemSelectedListener {
@@ -89,17 +100,26 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
+    fun initSpisokNewsData() : List<NewsData> {
 
-    override fun onResume() {
-        super.onResume()
+        var spisok = mutableListOf<NewsData>()
+            spisok.add(NewsData(R.drawable.news1, "Заголовок1", "Описание события тут много текста и прочее", "здесь дата1"))
+            spisok.add(NewsData(R.drawable.news2, "Заголовок2", "Описание события тут много текста и прочее", "здесь дата2"))
 
-        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE)
-        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE)
-        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE)
-        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE)
-        boolean1.text = sharedPreferences1.getBoolean("value1", true).toString()
-        boolean2.text = sharedPreferences2.getBoolean("value2", true).toString()
-        boolean3.text = sharedPreferences3.getBoolean("value3", true).toString()
-        boolean4.text = sharedPreferences4.getBoolean("value4", true).toString()
+        return spisok
     }
+
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE)
+//        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE)
+//        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE)
+//        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE)
+//        boolean1.text = sharedPreferences1.getBoolean("value1", true).toString()
+//        boolean2.text = sharedPreferences2.getBoolean("value2", true).toString()
+//        boolean3.text = sharedPreferences3.getBoolean("value3", true).toString()
+//        boolean4.text = sharedPreferences4.getBoolean("value4", true).toString()
+//    }
 }
