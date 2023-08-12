@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class NewsActivity : AppCompatActivity() {
     lateinit var nav: BottomNavigationView
     lateinit var buttonhead: ExtendedFloatingActionButton
     lateinit var buttonFilter: ImageView
+    lateinit var emptyText: TextView
 
     lateinit var sharedPreferences1: SharedPreferences
     lateinit var sharedPreferences2: SharedPreferences
@@ -39,6 +41,7 @@ class NewsActivity : AppCompatActivity() {
         buttonhead = findViewById(R.id.menuCategorii)
         nav = findViewById(R.id.BottomNavagation)
         buttonFilter = findViewById(R.id.filterButton)
+        emptyText = findViewById(R.id.textForEmptySpisok)
 
         recyclerView = findViewById(R.id.RecyclerNovosti)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -47,15 +50,6 @@ class NewsActivity : AppCompatActivity() {
 
         adapter = NewsAdapter(initSpisokNewsData())
         recyclerView.adapter = adapter // передаем в адаптер наш список с данными
-
-//        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE)
-//        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE)
-//        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE)
-//        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE)
-//        boolean1.text = sharedPreferences1.getBoolean("value1", true).toString()
-//        boolean2.text = sharedPreferences2.getBoolean("value2", true).toString()
-//        boolean3.text = sharedPreferences3.getBoolean("value3", true).toString()
-//        boolean4.text = sharedPreferences4.getBoolean("value4", true).toString()
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -68,12 +62,6 @@ class NewsActivity : AppCompatActivity() {
             val intent = Intent(this@NewsActivity, FiltrActivity::class.java)
             startActivity(intent)
         }
-
-        // открытие Новость1
-//        novost1.setOnClickListener {
-//            val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
-//            startActivity(intent)
-//        }
 
         // менюшка BootomMenu
         nav.setOnItemSelectedListener {
@@ -94,6 +82,11 @@ class NewsActivity : AppCompatActivity() {
 
     // инициализация списка для адаптера в RecyclerView
     fun initSpisokNewsData(): List<NewsData> {
+        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE) // деньгами
+        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE) // вещами
+        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE) // Проф. помощью
+        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE) // Волонтерством
+
         var spisok = mutableListOf<NewsData>()
 
         try {
@@ -101,15 +94,73 @@ class NewsActivity : AppCompatActivity() {
             var jsonArray: JSONArray = jsonObject.getJSONArray("sobutie")
             for (i in 0 until jsonArray.length()) {
                 var sobutieData: JSONObject = jsonArray.getJSONObject(i)
-                spisok.add(
-                    NewsData(
-                        resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
-                        sobutieData.getString("title"),
-                        sobutieData.getString("description"),
-                        sobutieData.getString("data"),
-                    ),
-                )
+
+                // проверяем наш фильтр перед добавлением
+                when (sobutieData.getString("categoriya")) {
+                    "Деньгами" -> {
+                        if (sharedPreferences1.getBoolean("value1", true) == true) {
+                            spisok.add(
+                                NewsData(
+                                    resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
+                                    sobutieData.getString("title"),
+                                    sobutieData.getString("description"),
+                                    sobutieData.getString("data"),
+                                ),
+                            )
+                        }
+                    }
+                    "Вещами" -> {
+                        if (sharedPreferences2.getBoolean("value2", true) == true) {
+                            spisok.add(
+                                NewsData(
+                                    resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
+                                    sobutieData.getString("title"),
+                                    sobutieData.getString("description"),
+                                    sobutieData.getString("data"),
+                                ),
+                            )
+                        }
+                    }
+                    "Проф. помощью" -> {
+                        if (sharedPreferences3.getBoolean("value3", true) == true) {
+                            spisok.add(
+                                NewsData(
+                                    resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
+                                    sobutieData.getString("title"),
+                                    sobutieData.getString("description"),
+                                    sobutieData.getString("data"),
+                                ),
+                            )
+                        }
+                    }
+                    "Волонтерством" -> {
+                        if (sharedPreferences4.getBoolean("value4", true) == true) {
+                            spisok.add(
+                                NewsData(
+                                    resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
+                                    sobutieData.getString("title"),
+                                    sobutieData.getString("description"),
+                                    sobutieData.getString("data"),
+                                ),
+                            )
+                        }
+                    }
+                }
+
+//                spisok.add(
+//                    NewsData(
+//                        resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
+//                        sobutieData.getString("title"),
+//                        sobutieData.getString("description"),
+//                        sobutieData.getString("data"),
+//                    ),
+//                )
             }
+            // если пустой список, показываем информацию
+            if (spisok.isEmpty()) {
+                emptyText.visibility = View.VISIBLE
+            }
+
         } catch (ex: Exception) {
             ex.stackTrace
         }

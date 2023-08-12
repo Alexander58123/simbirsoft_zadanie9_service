@@ -102,8 +102,6 @@ class FiltrActivity : AppCompatActivity() {
                 // в зависимости от позиции переключаем Switch
                 when (position) {
                     0 -> {
-                        // val holder: RecyclerView.ViewHolder? = recyclerView.findViewHolderForAdapterPosition(0)
-                        // val switch = holder?.itemView?.findViewById<Switch>(R.id.switch2)
                         val switch = model.switchFilter
                         if (switch?.isChecked == true) {
                             switch?.isChecked = false
@@ -170,10 +168,10 @@ class FiltrActivity : AppCompatActivity() {
         switch3.isChecked = pref4.getBoolean("value4", true)
     }
 
-    // перезапуск активити, возвращаем состояние
+     // перезапуск активити, возвращаем состояние
 //    override fun onRestart() {
 //        super.onRestart()
-//
+//        saveStageActivity() // сохранили состояние
 //    }
 
     // забирает последнее состояние Switch, перед onStop
@@ -207,11 +205,6 @@ class FiltrActivity : AppCompatActivity() {
                 var jsonObj = jsonArrayKategorii.getJSONObject(i)
                 jsonList?.add(Kategorii(jsonObj.getString("tip")))
             }
-
-            //      проверка вывода списка
-//            var adapterList: ArrayAdapter<Kategorii> = ArrayAdapter(this, android.R.layout.simple_list_item_1, jsonList)
-//            var listTest = findViewById<ListView>(R.id.test)
-//            listTest.adapter = adapterList
         } catch (e: Exception) {
             // здесь дополнительная обработка при отсутствии файла
             e.stackTrace
