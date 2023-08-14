@@ -78,7 +78,6 @@ class FiltrActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         // навигация в BottomMenu
         nav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -103,43 +102,26 @@ class FiltrActivity : AppCompatActivity() {
                 when (position) {
                     0 -> {
                         val switch = model.switchFilter
-                        if (switch?.isChecked == true) {
-                            switch?.isChecked = false
-                        } else {
-                            switch?.isChecked = true
-                        }
+                        switch?.isChecked = switch?.isChecked != true
                     }
                     1 -> {
                         val switch = spisokForAdapter.get(1).switchFilter
-                        if (switch?.isChecked == true) {
-                            switch?.isChecked = false
-                        } else {
-                            switch?.isChecked = true
-                        }
+                        switch?.isChecked = switch?.isChecked != true
                     }
                     2 -> {
                         val switch = spisokForAdapter.get(2).switchFilter
-                        if (switch?.isChecked == true) {
-                            switch?.isChecked = false
-                        } else {
-                            switch?.isChecked = true
-                        }
+                        switch?.isChecked = switch?.isChecked != true
                     }
                     3 -> {
                         val switch = spisokForAdapter.get(3).switchFilter
-                        if (switch?.isChecked == true) {
-                            switch?.isChecked = false
-                        } else {
-                            switch?.isChecked = true
-                        }
+                        switch?.isChecked = switch?.isChecked != true
                     }
                 }
             }
         })
     }
 
-
-
+    // инициализация SharedPreferences и Switch
     fun initSwitchandSharedPreferences() {
         pref1 = getSharedPreferences("hranilishe1", MODE_PRIVATE)
         pref2 = getSharedPreferences("hranilishe2", MODE_PRIVATE)
@@ -150,6 +132,7 @@ class FiltrActivity : AppCompatActivity() {
         switch2 = Switch(this)
         switch3 = Switch(this)
 
+        // если не нулевые, то обновляем наши Switch. По-дефолту ставим true
         if (pref1 != null && pref2 != null && pref3 != null && pref4 != null) {
             switch.isChecked = pref1.getBoolean("value1", true)
             switch1.isChecked = pref2.getBoolean("value2", true)
@@ -158,21 +141,15 @@ class FiltrActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        saveStageActivity() // сохранили состояние
+    override fun onPause() {
+        super.onPause()
+        saveStageActivity() // сохранили состояние текущее в хранилище
         // изменили состояние
         switch.isChecked = pref1.getBoolean("value1", true)
         switch1.isChecked = pref2.getBoolean("value2", true)
         switch2.isChecked = pref3.getBoolean("value3", true)
         switch3.isChecked = pref4.getBoolean("value4", true)
     }
-
-     // перезапуск активити, возвращаем состояние
-//    override fun onRestart() {
-//        super.onRestart()
-//        saveStageActivity() // сохранили состояние
-//    }
 
     // забирает последнее состояние Switch, перед onStop
     fun saveStageActivity() {
@@ -184,10 +161,10 @@ class FiltrActivity : AppCompatActivity() {
         edit2.putBoolean("value2", spisokForAdapter.get(1).switchFilter.isChecked)
         edit3.putBoolean("value3", spisokForAdapter.get(2).switchFilter.isChecked)
         edit4.putBoolean("value4", spisokForAdapter.get(3).switchFilter.isChecked)
-        edit1.apply()
-        edit2.apply()
-        edit3.apply()
-        edit4.apply()
+        edit1.commit()
+        edit2.commit()
+        edit3.commit()
+        edit4.commit()
     }
 
     // чтение файла json (категории в фильтре)

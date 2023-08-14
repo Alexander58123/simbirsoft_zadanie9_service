@@ -1,5 +1,6 @@
 package com.example.zadanie6
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class NewsAdapter(val spisokNews: List<NewsData>) : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
+    var count = 0
 
     // вытаскиваем все элементы
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,6 +35,7 @@ class NewsAdapter(val spisokNews: List<NewsData>) : RecyclerView.Adapter<NewsAda
 
     // связываем данные адаптера и передаваемого списка
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Log.d("NewsAdapter", "OnBindViewHolder, count ${++count}")
         holder.image.setImageResource(spisokNews.get(position).imageId)  // картинка
         holder.title.text = spisokNews.get(position).title               // заголовок
         holder.description.text = spisokNews.get(position).description   // описание

@@ -24,11 +24,6 @@ class NewsActivity : AppCompatActivity() {
     lateinit var buttonFilter: ImageView
     lateinit var emptyText: TextView
 
-    lateinit var sharedPreferences1: SharedPreferences
-    lateinit var sharedPreferences2: SharedPreferences
-    lateinit var sharedPreferences3: SharedPreferences
-    lateinit var sharedPreferences4: SharedPreferences
-
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: NewsAdapter
     lateinit var spisokForAdapter: List<NewsData>
@@ -46,9 +41,10 @@ class NewsActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.RecyclerNovosti)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+
         spisokForAdapter = initSpisokNewsData()
 
-        adapter = NewsAdapter(initSpisokNewsData())
+        adapter = NewsAdapter(spisokForAdapter)
         recyclerView.adapter = adapter // передаем в адаптер наш список с данными
 
         // открытие меню Помочь
@@ -80,12 +76,24 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
+    // ВОТ ЗДЕСЬ УТОЧНИТЬ,ЕСЛИ ИНИЦИАЛИЗИРУЕМ В Create, почему наш список
+    // снова обновляется и работает без onRestart
+//    override fun onRestart() {
+//        super.onRestart()
+//        spisokForAdapter = initSpisokNewsData()
+//
+//        adapter = NewsAdapter(spisokForAdapter)
+//        recyclerView.adapter = adapter // передаем в адаптер наш список с данными
+//    }
+
     // инициализация списка для адаптера в RecyclerView
     fun initSpisokNewsData(): List<NewsData> {
-        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE) // деньгами
-        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE) // вещами
-        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE) // Проф. помощью
-        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE) // Волонтерством
+        val sharedPreferences1 = getSharedPreferences("hranilishe1", MODE_PRIVATE) // деньгами
+        val sharedPreferences2 = getSharedPreferences("hranilishe2", MODE_PRIVATE) // вещами
+        val sharedPreferences3 = getSharedPreferences("hranilishe3", MODE_PRIVATE) // Проф. помощью
+        val sharedPreferences4 = getSharedPreferences("hranilishe4", MODE_PRIVATE) // Волонтерством
+
+
 
         var spisok = mutableListOf<NewsData>()
 
@@ -160,7 +168,6 @@ class NewsActivity : AppCompatActivity() {
             if (spisok.isEmpty()) {
                 emptyText.visibility = View.VISIBLE
             }
-
         } catch (ex: Exception) {
             ex.stackTrace
         }
@@ -184,16 +191,5 @@ class NewsActivity : AppCompatActivity() {
         return json
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//
-//        sharedPreferences1 = this.getSharedPreferences("hranilishe1", MODE_PRIVATE)
-//        sharedPreferences2 = this.getSharedPreferences("hranilishe2", MODE_PRIVATE)
-//        sharedPreferences3 = this.getSharedPreferences("hranilishe3", MODE_PRIVATE)
-//        sharedPreferences4 = this.getSharedPreferences("hranilishe4", MODE_PRIVATE)
-//        boolean1.text = sharedPreferences1.getBoolean("value1", true).toString()
-//        boolean2.text = sharedPreferences2.getBoolean("value2", true).toString()
-//        boolean3.text = sharedPreferences3.getBoolean("value3", true).toString()
-//        boolean4.text = sharedPreferences4.getBoolean("value4", true).toString()
-//    }
+
 }
