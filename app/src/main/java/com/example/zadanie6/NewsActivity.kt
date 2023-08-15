@@ -2,7 +2,6 @@ package com.example.zadanie6
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -44,8 +43,12 @@ class NewsActivity : AppCompatActivity() {
 
         spisokForAdapter = initSpisokNewsData()
 
-        adapter = NewsAdapter(spisokForAdapter)
+        // adapter = NewsAdapter(spisokForAdapter)
+        // adapter = NewsAdapter().setData(spisokForAdapter)
+        adapter = NewsAdapter()
+        adapter.setData(spisokForAdapter)
         recyclerView.adapter = adapter // передаем в адаптер наш список с данными
+        adapter.notifyDataSetChanged()
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -109,6 +112,7 @@ class NewsActivity : AppCompatActivity() {
                         if (sharedPreferences1.getBoolean("value1", true) == true) {
                             spisok.add(
                                 NewsData(
+                                    sobutieData.getInt("id"),
                                     resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
                                     sobutieData.getString("title"),
                                     sobutieData.getString("description"),
@@ -121,6 +125,7 @@ class NewsActivity : AppCompatActivity() {
                         if (sharedPreferences2.getBoolean("value2", true) == true) {
                             spisok.add(
                                 NewsData(
+                                    sobutieData.getInt("id"),
                                     resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
                                     sobutieData.getString("title"),
                                     sobutieData.getString("description"),
@@ -133,6 +138,7 @@ class NewsActivity : AppCompatActivity() {
                         if (sharedPreferences3.getBoolean("value3", true) == true) {
                             spisok.add(
                                 NewsData(
+                                    sobutieData.getInt("id"),
                                     resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
                                     sobutieData.getString("title"),
                                     sobutieData.getString("description"),
@@ -145,6 +151,7 @@ class NewsActivity : AppCompatActivity() {
                         if (sharedPreferences4.getBoolean("value4", true) == true) {
                             spisok.add(
                                 NewsData(
+                                    sobutieData.getInt("id"),
                                     resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
                                     sobutieData.getString("title"),
                                     sobutieData.getString("description"),
@@ -164,7 +171,7 @@ class NewsActivity : AppCompatActivity() {
 //                    ),
 //                )
             }
-            // если пустой список, показываем информацию
+            // если пустой список, показываем уведомление
             if (spisok.isEmpty()) {
                 emptyText.visibility = View.VISIBLE
             }
