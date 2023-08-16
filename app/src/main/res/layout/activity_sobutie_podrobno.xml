@@ -248,7 +248,7 @@
                         android:layout_marginBottom="10dp">
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/imageSobutie"
                             android:layout_width="236dp"
                             android:layout_height="195dp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -275,7 +275,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView27"
+                        android:id="@+id/descriptionSobutie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"

@@ -94,7 +94,7 @@ class FiltrActivity : AppCompatActivity() {
             return@setOnItemSelectedListener true
         }
 
-        // слушатель для RecyclerView
+        // слушатель для Адаптера
         adapter.setOnClickListener(object :
             FilterAdapter.OnClickListener {
             override fun onClick(position: Int, model: FilterData) {

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
 
     private val spisokNews = mutableListOf<NewsData>()
+    private var onClickListener: NewsAdapter.OnClickListener? = null
     var count = 0
 
     // вытаскиваем все элементы
@@ -43,6 +44,15 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
         holder.title.text = spisokNews.get(position).title // заголовок
         holder.description.text = spisokNews.get(position).description // описание
         holder.data.text = spisokNews.get(position).data // дата события
+
+
+        //  Finally add an onclickListener to the item.
+        val item = spisokNews[position]
+        holder.data.setOnClickListener {
+            if (onClickListener != null) {
+                onClickListener!!.onClick(position, item)
+            }
+        }
     }
 
     // сеттер для передачи списка (старый без DiffUtils)
@@ -58,5 +68,15 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
         val diffResult = DiffUtil.calculateDiff(callback)
         diffResult.dispatchUpdatesTo(this)
         spisokNews.addAll(nashSpisok)
+    }
+
+
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
+
+    // интерфейс
+    interface OnClickListener {
+        fun onClick(position: Int, model: NewsData)
     }
 }

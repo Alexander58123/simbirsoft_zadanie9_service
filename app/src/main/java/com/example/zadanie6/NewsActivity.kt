@@ -40,7 +40,6 @@ class NewsActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.RecyclerNovosti)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-
         spisokForAdapter = initSpisokNewsData()
 
         // adapter = NewsAdapter(spisokForAdapter)
@@ -77,6 +76,18 @@ class NewsActivity : AppCompatActivity() {
 
             return@setOnItemSelectedListener true
         }
+
+        // слушатель для адаптера через анонимный класс
+        adapter.setOnClickListener(object : NewsAdapter.OnClickListener {
+            override fun onClick(position: Int, model: NewsData) {
+                val tekushiiObject = spisokForAdapter[position]
+                val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
+                intent.putExtra("sobutieData", tekushiiObject)
+                startActivity(intent)
+//                val toast = Toast.makeText(applicationContext, "Заголовок: ${tekushiiObject.title}", Toast.LENGTH_SHORT)
+//                toast.show()
+            }
+        })
     }
 
     // ВОТ ЗДЕСЬ УТОЧНИТЬ,ЕСЛИ ИНИЦИАЛИЗИРУЕМ В Create, почему наш список
@@ -95,8 +106,6 @@ class NewsActivity : AppCompatActivity() {
         val sharedPreferences2 = getSharedPreferences("hranilishe2", MODE_PRIVATE) // вещами
         val sharedPreferences3 = getSharedPreferences("hranilishe3", MODE_PRIVATE) // Проф. помощью
         val sharedPreferences4 = getSharedPreferences("hranilishe4", MODE_PRIVATE) // Волонтерством
-
-
 
         var spisok = mutableListOf<NewsData>()
 
@@ -197,6 +206,4 @@ class NewsActivity : AppCompatActivity() {
         }
         return json
     }
-
-
 }
