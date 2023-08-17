@@ -44,13 +44,18 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/titleBar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:ellipsize="end"
                             android:gravity="center"
+                            android:maxLength="18"
+                            android:maxLines="1"
+                            android:singleLine="true"
                             android:text="Спонсоры отремонтируют"
                             android:textAllCaps="false"
                             android:textColor="#FFF"
-                            android:textSize="21sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <RelativeLayout

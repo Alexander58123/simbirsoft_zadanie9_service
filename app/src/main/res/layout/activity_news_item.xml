@@ -83,6 +83,8 @@
             android:id="@+id/buttonData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/turtle_green"
             android:drawableLeft="@drawable/icon_calendar"
@@ -91,7 +93,7 @@
             android:textColor="@color/white"
             android:textSize="12sp"
             app:cornerRadius="0dp"
-            app:lineHeight="16sp" />
+            app:lineHeight="16dp" />
 
 
     </FrameLayout>
