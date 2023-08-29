@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.InputStream
 import java.lang.Exception
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class NewsActivity : AppCompatActivity() {
 
@@ -22,6 +25,7 @@ class NewsActivity : AppCompatActivity() {
     lateinit var buttonhead: ExtendedFloatingActionButton
     lateinit var buttonFilter: ImageView
     lateinit var emptyText: TextView
+    lateinit var progressBar: ProgressBar
 
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: NewsAdapter
@@ -36,18 +40,48 @@ class NewsActivity : AppCompatActivity() {
         nav = findViewById(R.id.BottomNavagation)
         buttonFilter = findViewById(R.id.filterButton)
         emptyText = findViewById(R.id.textForEmptySpisok)
+        progressBar = findViewById(R.id.progressBar)
 
         recyclerView = findViewById(R.id.RecyclerNovosti)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        spisokForAdapter = initSpisokNewsData()
-
-        // adapter = NewsAdapter(spisokForAdapter)
-        // adapter = NewsAdapter().setData(spisokForAdapter)
+        spisokForAdapter = emptyList()
         adapter = NewsAdapter()
-        adapter.setData(spisokForAdapter)
-        recyclerView.adapter = adapter // передаем в адаптер наш список с данными
-        adapter.notifyDataSetChanged()
+
+        val service: ExecutorService = Executors.newSingleThreadExecutor()
+        service.execute(
+            Runnable {
+                runOnUiThread(
+                    Runnable {
+                        progressBar.visibility = View.VISIBLE
+                    },
+                )
+
+                Thread.sleep(5000)
+
+                runOnUiThread(
+                    Runnable {
+                        spisokForAdapter = initSpisokNewsData()
+                        adapter.setData(spisokForAdapter)
+                        recyclerView.adapter = adapter // передаем в адаптер наш список с данными
+                        adapter.notifyDataSetChanged()
+                        progressBar.visibility = View.GONE
+                    },
+                )
+
+                //  слушатель для адаптера через анонимный класс
+                adapter.setOnClickListener(object : NewsAdapter.OnClickListener {
+                    override fun onClick(position: Int, model: NewsData) {
+                        val tekushiiObject = spisokForAdapter[position]
+                        val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
+                        intent.putExtra("sobutieData", tekushiiObject)
+                        startActivity(intent)
+                    }
+                })
+            },
+        )
+
+
 
         // открытие меню Помочь
         buttonhead.setOnClickListener {
@@ -77,28 +111,8 @@ class NewsActivity : AppCompatActivity() {
             return@setOnItemSelectedListener true
         }
 
-        // слушатель для адаптера через анонимный класс
-        adapter.setOnClickListener(object : NewsAdapter.OnClickListener {
-            override fun onClick(position: Int, model: NewsData) {
-                val tekushiiObject = spisokForAdapter[position]
-                val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
-                intent.putExtra("sobutieData", tekushiiObject)
-                startActivity(intent)
-//                val toast = Toast.makeText(applicationContext, "Заголовок: ${tekushiiObject.title}", Toast.LENGTH_SHORT)
-//                toast.show()
-            }
-        })
-    }
 
-    // ВОТ ЗДЕСЬ УТОЧНИТЬ,ЕСЛИ ИНИЦИАЛИЗИРУЕМ В Create, почему наш список
-    // снова обновляется и работает без onRestart
-//    override fun onRestart() {
-//        super.onRestart()
-//        spisokForAdapter = initSpisokNewsData()
-//
-//        adapter = NewsAdapter(spisokForAdapter)
-//        recyclerView.adapter = adapter // передаем в адаптер наш список с данными
-//    }
+    }
 
     // инициализация списка для адаптера в RecyclerView
     fun initSpisokNewsData(): List<NewsData> {
@@ -171,14 +185,7 @@ class NewsActivity : AppCompatActivity() {
                     }
                 }
 
-//                spisok.add(
-//                    NewsData(
-//                        resources.getIdentifier(sobutieData.getString("kartinka"), "drawable", packageName),
-//                        sobutieData.getString("title"),
-//                        sobutieData.getString("description"),
-//                        sobutieData.getString("data"),
-//                    ),
-//                )
+
             }
             // если пустой список, показываем уведомление
             if (spisok.isEmpty()) {

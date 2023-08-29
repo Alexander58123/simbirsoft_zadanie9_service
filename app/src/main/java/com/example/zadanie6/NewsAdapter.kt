@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -45,7 +44,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
         holder.description.text = spisokNews.get(position).description // описание
         holder.data.text = spisokNews.get(position).data // дата события
 
-
         //  Finally add an onclickListener to the item.
         val item = spisokNews[position]
         holder.data.setOnClickListener {
@@ -69,7 +67,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
         diffResult.dispatchUpdatesTo(this)
         spisokNews.addAll(nashSpisok)
     }
-
 
     fun setOnClickListener(onClickListener: OnClickListener) {
         this.onClickListener = onClickListener

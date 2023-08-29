@@ -35,7 +35,6 @@ class FilterAdapter(var spisokFiltra: List<FilterData>) :
         holder.switchFilter.isChecked = spisokFiltra.get(position).switchFilter.isChecked // забираем статус из нашего списка
         spisokFiltra[position].switchFilter = holder.switchFilter
 
-
         //  Finally add an onclickListener to the item.
         val item = spisokFiltra[position]
         holder.itemView.setOnClickListener {

@@ -102,19 +102,19 @@ class FiltrActivity : AppCompatActivity() {
                 when (position) {
                     0 -> {
                         val switch = model.switchFilter
-                        switch?.isChecked = switch?.isChecked != true
+                        switch.isChecked = switch.isChecked != true
                     }
                     1 -> {
                         val switch = spisokForAdapter.get(1).switchFilter
-                        switch?.isChecked = switch?.isChecked != true
+                        switch.isChecked = switch.isChecked != true
                     }
                     2 -> {
                         val switch = spisokForAdapter.get(2).switchFilter
-                        switch?.isChecked = switch?.isChecked != true
+                        switch.isChecked = switch.isChecked != true
                     }
                     3 -> {
                         val switch = spisokForAdapter.get(3).switchFilter
-                        switch?.isChecked = switch?.isChecked != true
+                        switch.isChecked = switch.isChecked != true
                     }
                 }
             }
@@ -161,26 +161,26 @@ class FiltrActivity : AppCompatActivity() {
         edit2.putBoolean("value2", spisokForAdapter.get(1).switchFilter.isChecked)
         edit3.putBoolean("value3", spisokForAdapter.get(2).switchFilter.isChecked)
         edit4.putBoolean("value4", spisokForAdapter.get(3).switchFilter.isChecked)
-        edit1.commit()
-        edit2.commit()
-        edit3.commit()
-        edit4.commit()
+        edit1.apply()
+        edit2.apply()
+        edit3.apply()
+        edit4.apply()
     }
 
     // чтение файла json (категории в фильтре)
     fun read_json(): List<Kategorii> {
-        var json: String? = null
-        var jsonList = mutableListOf<Kategorii>()
+        val json: String
+        val jsonList = mutableListOf<Kategorii>()
 
         try {
             val inputStream: InputStream = assets.open("categorii.json")
             json = inputStream.bufferedReader().use { it.readText() }
 
-            var jsonArrayKategorii = JSONArray(json)
+            val jsonArrayKategorii = JSONArray(json)
 
             for (i in 0..jsonArrayKategorii.length() - 1) {
-                var jsonObj = jsonArrayKategorii.getJSONObject(i)
-                jsonList?.add(Kategorii(jsonObj.getString("tip")))
+                val jsonObj = jsonArrayKategorii.getJSONObject(i)
+                jsonList.add(Kategorii(jsonObj.getString("tip")))
             }
         } catch (e: Exception) {
             // здесь дополнительная обработка при отсутствии файла

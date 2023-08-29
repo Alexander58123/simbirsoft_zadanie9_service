@@ -16,9 +16,6 @@ class CategoriiPomoshi : AppCompatActivity() {
         setContentView(R.layout.activity_categorii_pomoshi)
 
         // вживляем фрагмент в активити
-//        supportFragmentManager.
-//        beginTransaction().
-//        replace(R.id.place_holder, BlankFragment.newInstance()).commit()
         replaceFragment(BlankFragment())
 
         // наши объекты для работы
