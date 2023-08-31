@@ -26,7 +26,22 @@
         android:layout_below="@+id/appBarLayout"
         android:layout_alignBottom="@id/extendedFloatingActionButton"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="41dp" />
+        android:layout_marginBottom="41dp">
+
+
+        <ProgressBar
+            android:id="@+id/progressBarPomosh"
+            style="?android:attr/progressBarStyle"
+            android:indeterminateTint="@color/grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "center"
+            android:elevation="10dp"
+            />
+
+    </FrameLayout>
+
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
