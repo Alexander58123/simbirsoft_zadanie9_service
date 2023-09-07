@@ -48,7 +48,7 @@ class CategoriiPomoshi : AppCompatActivity() {
                             val fragmentManager = supportFragmentManager
                             val fragmentTransaction = fragmentManager.beginTransaction()
                             fragmentTransaction.replace(R.id.place_holder, BlankFragment())
-                            fragmentTransaction.commit()
+                            fragmentTransaction.commitAllowingStateLoss()
                             progressBar.visibility = View.GONE
                         },
                     )
