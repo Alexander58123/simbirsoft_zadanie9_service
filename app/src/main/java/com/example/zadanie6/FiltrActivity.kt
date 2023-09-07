@@ -192,7 +192,7 @@ class FiltrActivity : AppCompatActivity() {
 
     // список для адаптера RecyclerView
     fun fillList(switch: Switch, switch1: Switch, switch2: Switch, switch3: Switch): List<FilterData> {
-        var data = mutableListOf<FilterData>()
+        val data = mutableListOf<FilterData>()
         data.add(FilterData(spisokKategorii.get(0).nazvanie, switch))
         data.add(FilterData(spisokKategorii.get(1).nazvanie, switch1))
         data.add(FilterData(spisokKategorii.get(2).nazvanie, switch2))

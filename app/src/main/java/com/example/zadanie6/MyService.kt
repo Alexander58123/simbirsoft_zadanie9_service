@@ -26,9 +26,9 @@ class MyService : Service() {
         // список для передачи из service in activity
         var spisokForTransfer: List<NewsData>
 
-        var intentOutput = Intent("Transfer")
+        val intentOutput = Intent("Transfer")
 
-        var service: ExecutorService = Executors.newSingleThreadExecutor()
+        val service: ExecutorService = Executors.newSingleThreadExecutor()
         service.execute {
             Thread.sleep(5000)
             spisokForTransfer = initSpisokNewsData()
@@ -55,13 +55,13 @@ class MyService : Service() {
         val sharedPreferences3 = getSharedPreferences("hranilishe3", MODE_PRIVATE) // Проф. помощью
         val sharedPreferences4 = getSharedPreferences("hranilishe4", MODE_PRIVATE) // Волонтерством
 
-        var spisok = mutableListOf<NewsData>()
+        val spisok = mutableListOf<NewsData>()
 
         try {
-            var jsonObject: JSONObject = JSONObject(JsonDataFromAsset("sobutie.json")) // строку принимает
-            var jsonArray: JSONArray = jsonObject.getJSONArray("sobutie")
+            val jsonObject: JSONObject = JSONObject(JsonDataFromAsset("sobutie.json")) // строку принимает
+            val jsonArray: JSONArray = jsonObject.getJSONArray("sobutie")
             for (i in 0 until jsonArray.length()) {
-                var sobutieData: JSONObject = jsonArray.getJSONObject(i)
+                val sobutieData: JSONObject = jsonArray.getJSONObject(i)
 
                 // проверяем наш фильтр перед добавлением
                 when (sobutieData.getString("categoriya")) {
@@ -134,9 +134,9 @@ class MyService : Service() {
     fun JsonDataFromAsset(filename: String): String? {
         var json: String? = null
         try {
-            var inputStream: InputStream = assets.open(filename)
-            var sizeOfFile: Int = inputStream.available()
-            var bufferData = ByteArray(sizeOfFile)
+            val inputStream: InputStream = assets.open(filename)
+            val sizeOfFile: Int = inputStream.available()
+            val bufferData = ByteArray(sizeOfFile)
             inputStream.read(bufferData)
             inputStream.close()
             json = String(bufferData, Charsets.UTF_8)

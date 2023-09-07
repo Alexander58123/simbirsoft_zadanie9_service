@@ -36,7 +36,7 @@ class Profile : AppCompatActivity() {
         dialog = Dialog(this)
 
         // сохраняем изначальную картинку
-        var drawable = imageProfile.drawable as BitmapDrawable
+        val drawable = imageProfile.drawable as BitmapDrawable
         imageProfileOriginal = drawable.bitmap
 
         if (ContextCompat.checkSelfPermission(
@@ -85,7 +85,7 @@ class Profile : AppCompatActivity() {
 
     // открытие камеры
     fun showCamera(view: View) {
-        var intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 100)
         dialog.hide()
     }

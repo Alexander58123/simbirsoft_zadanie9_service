@@ -30,7 +30,7 @@ class SobutiePodrobno : AppCompatActivity() {
         buttonhead = findViewById(R.id.menuCategorii3)
         arrowBack = findViewById(R.id.arrovBackID)
 
-        var tekushiiObject = intent.getParcelableExtra<NewsData>("sobutieData")
+        val tekushiiObject = intent.getParcelableExtra<NewsData>("sobutieData")
 
         titleBar = findViewById(R.id.titleBar)
         titleSobutie = findViewById(R.id.TitleSobutie)

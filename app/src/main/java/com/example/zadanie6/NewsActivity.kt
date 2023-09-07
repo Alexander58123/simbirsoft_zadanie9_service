@@ -67,17 +67,17 @@ class NewsActivity : AppCompatActivity() {
             })
         } else {
             // вызываем сервис
-            val intent: Intent = Intent(applicationContext, MyService::class.java)
+            val intent = Intent(applicationContext, MyService::class.java)
             startService(intent)
 
             // получаем данные из service
-            val intentFilter: IntentFilter = IntentFilter()
+            val intentFilter = IntentFilter()
             intentFilter.addAction("Transfer")
 
             val broadcastReceiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context?, intent: Intent?) {
                     if (intent?.action.equals("Transfer")) {
-                        var spisokFromTransferService =
+                        val spisokFromTransferService =
                             intent?.getSerializableExtra("nashSpisok") as List<NewsData>
                         spisokForAdapter = spisokFromTransferService
                         adapter.setData(spisokForAdapter)
@@ -88,9 +88,9 @@ class NewsActivity : AppCompatActivity() {
                         adapter.setOnClickListener(object : NewsAdapter.OnClickListener {
                             override fun onClick(position: Int, model: NewsData) {
                                 val tekushiiObject = spisokForAdapter[position]
-                                val intent = Intent(this@NewsActivity, SobutiePodrobno::class.java)
-                                intent.putExtra("sobutieData", tekushiiObject)
-                                startActivity(intent)
+                                val intentAdapter = Intent(this@NewsActivity, SobutiePodrobno::class.java)
+                                intentAdapter.putExtra("sobutieData", tekushiiObject)
+                                startActivity(intentAdapter)
                             }
                         })
 
@@ -100,8 +100,6 @@ class NewsActivity : AppCompatActivity() {
             }
 
             registerReceiver(broadcastReceiver, intentFilter)
-
-
         }
 
         // открытие меню Помочь
@@ -138,6 +136,4 @@ class NewsActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         outState.putSerializable("key_state", spisokForAdapter as Serializable)
     }
-
-
 }
